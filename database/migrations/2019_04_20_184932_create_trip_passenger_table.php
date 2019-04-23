@@ -21,9 +21,9 @@ class CreateTripPassengerTable extends Migration
             $table->unsignedBigInteger('stage_no');
             $table->timestamps();
 
-            $table->foreign('user_no')->references('id')->on('users');
-            $table->foreign('trip_no')->references('trip_no')->on('trip');
-            $table->foreign('stage_no')->references('stage_no')->on('stage');
+            $table->foreign('user_no')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('trip_no')->references('trip_no')->on('trip')->onDelete('cascade');
+            $table->foreign('stage_no')->references('stage_no')->on('stage')->onDelete('cascade');
         });
     }
 

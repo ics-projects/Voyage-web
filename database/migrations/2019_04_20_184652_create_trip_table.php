@@ -21,9 +21,9 @@ class CreateTripTable extends Migration
             $table->unsignedBigInteger('driver_no');
             $table->timestamps();
 
-            $table->foreign('bus_no')->references('bus_no')->on('bus');
-            $table->foreign('route_no')->references('route_no')->on('bus_route');
-            $table->foreign('driver_no')->references('driver_no')->on('bus_driver');
+            $table->foreign('bus_no')->references('bus_no')->on('bus')->onDelete('cascade');
+            $table->foreign('route_no')->references('route_no')->on('bus_route')->onDelete('cascade');
+            $table->foreign('driver_no')->references('driver_no')->on('bus_driver')->onDelete('cascade');
         });
     }
 

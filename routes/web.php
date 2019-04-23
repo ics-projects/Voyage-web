@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('pages.landing');
 });
 
+Route::resource('/tripPassenger', 'TripPassengerController');
+
 Auth::routes();
 
 
