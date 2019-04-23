@@ -14,17 +14,16 @@ class CreateTripTable extends Migration
     public function up()
     {
         Schema::create('trip', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('trip_no');
+            $table->bigIncrements('trip_no');
             $table->timestamp('departure_time');
             $table->unsignedBigInteger('bus_no');
             $table->unsignedBigInteger('route_no');
             $table->unsignedBigInteger('driver_no');
             $table->timestamps();
 
-            $table->foreign('bus_no')->references('id')->on('bus');
-            $table->foreign('route_no')->references('id')->on('bus_route');
-            $table->foreign('driver_no')->references('id')->on('bus_driver');
+            $table->foreign('bus_no')->references('bus_no')->on('bus');
+            $table->foreign('route_no')->references('route_no')->on('bus_route');
+            $table->foreign('driver_no')->references('driver_no')->on('bus_driver');
         });
     }
 

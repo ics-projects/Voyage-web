@@ -14,11 +14,12 @@ class CreateBusRouteTable extends Migration
     public function up()
     {
         Schema::create('bus_route', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('route_no');
+            $table->bigIncrements('route_no');
             $table->string('start');
             $table->string('destination');
             $table->timestamps();
+
+            // $table->primary('route_no');
         });
     }
 

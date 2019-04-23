@@ -22,8 +22,8 @@ class CreateTripPassengerTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_no')->references('id')->on('users');
-            $table->foreign('trip_no')->references('id')->on('trip');
-            $table->foreign('stage_no')->references('id')->on('stage');
+            $table->foreign('trip_no')->references('trip_no')->on('trip');
+            $table->foreign('stage_no')->references('stage_no')->on('stage');
         });
     }
 

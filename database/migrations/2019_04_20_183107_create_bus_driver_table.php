@@ -14,11 +14,12 @@ class CreateBusDriverTable extends Migration
     public function up()
     {
         Schema::create('bus_driver', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('driver_no');
+            $table->bigIncrements('driver_no');
             $table->string('name');
             $table->string('license_no');
             $table->timestamps();
+
+            // $table->primary('driver_no');
         });
     }
 
