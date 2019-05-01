@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateStagesRouteTable extends Migration {
+class CreateRouteStageTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateStagesRouteTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('stages_route', function(Blueprint $table)
+		Schema::create('route_stage', function(Blueprint $table)
 		{
 			$table->bigInteger('route')->unsigned();
 			$table->bigInteger('stage')->unsigned()->index('stage_ID_idx');
@@ -30,7 +30,7 @@ class CreateStagesRouteTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('stages_route');
+		Schema::drop('route_stage');
 	}
 
 }

@@ -16,7 +16,8 @@ class CreateBookingTable extends Migration {
 		{
 			$table->bigInteger('id', true)->unsigned();
 			$table->bigInteger('user')->unsigned()->index('user_idx');
-			$table->bigInteger('trip')->unsigned()->index('trip_idx');
+			$table->bigInteger('schedule')->unsigned()->index('fk_booking_schedule_idx');
+			$table->bigInteger('pick_point')->unsigned();
 			$table->timestamps();
 		});
 	}

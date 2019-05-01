@@ -14,7 +14,7 @@ class AddForeignKeysToBookingTable extends Migration {
 	{
 		Schema::table('booking', function(Blueprint $table)
 		{
-			$table->foreign('trip', 'fk_booking_trip')->references('id')->on('trip')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('schedule', 'fk_booking_schedule')->references('id')->on('schedule')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 			$table->foreign('user', 'fk_booking_user')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
@@ -29,7 +29,7 @@ class AddForeignKeysToBookingTable extends Migration {
 	{
 		Schema::table('booking', function(Blueprint $table)
 		{
-			$table->dropForeign('fk_booking_trip');
+			$table->dropForeign('fk_booking_schedule');
 			$table->dropForeign('fk_booking_user');
 		});
 	}

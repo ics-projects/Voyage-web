@@ -3,98 +3,47 @@
     @include('includes.header')
 </header>
 
+
 @section('content')
 <div class="section-gap">
     <div class="container">
+        <div class="col-lg-4 col-md-6">
 
-        @foreach ($trips as $trip)
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $trip->bus_route->start }} - {{ $trip->bus_route->destination }}</h5>
-                        {{--
-                        <p class="col-md-3">NRB - MBSA</p> --}}
-                        <p class="col-md-3">Departure time: {{ $trip->departure_time }}</p>
-                        <p class="col-md-3">Cost: 25000</p>
-                        {{--
-                        <p class="card-text">NRB - MBSA</p> --}}
-                        <a href="#" id="openModal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id="{{ $trip->trip_no }}">Go</a>
-                    </div>
+            <div class="tab-content" id="bookingForm">
+                <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
+                    <form class="form-wrap">
+                        <div class="row align-items-center">
+                            <li class="nav-item">
+                                <p>Book Your Bus</p>
+                            </li>
+                        </div>
+                        <select class="form-control" id="departure" name="departure" placeholder="where from " onfocus="this.placeholder = ''" onblur="this.placeholder = 'from '">
+                            @foreach ($trips as $trip)
+                            <option value="{{ $trip->id }}">{{ $trip->schedule->origin->name }}</option>
+                            @endforeach
+                        </select>
+                        <select class="form-control" id="destination" name="destination" placeholder="where to " onfocus="this.placeholder = ''" onblur="this.placeholder = ' To '">
+                            @foreach ($trips as $trip)
+                            <option value="{{ $trip->id }}">{{ $trip->schedule->destination->name }}</option>
+                            @endforeach
+                        </select>
+                        <input type="date" class="form-control" name="date" placeholder="Date " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date '">
+                        <input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Adults '">
+                        <input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Child '">
+                        <a href="#" class="primary-btn text-uppercase">Search Buses</a>
+                    </form>
                 </div>
             </div>
         </div>
-        @endforeach
-
     </div>
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form id="tripPassengerForm" method="POST" action="/tripPassenger">
-                                            @csrf
-                                            <input id="trip_no" name="trip_no" type="text" style="display: none;" value="#">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="">Pick Point</label>
-                                                        <select class="form-control" id="pick-point" name="pick-point">
-                                                            @foreach ($stages as $stage)
-                                                            <option value="{{ $stage->stage_no }}">{{ $stage->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <label class="">Drop Point</label>
-                                                        <select class="form-control" id="pick-point" name="stage_no">
-                                                                @foreach ($stages as $stage)
-                                                                <option value="{{ $stage->stage_no }}">{{ $stage->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button id="submitBtn" type="submit" class="btn btn-primary pull-right" style="display: none;">Save</button>
-                                            <div class="clearfix"></div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary"
-                                            onclick="event.preventDefault();
-                                                document.getElementById('tripPassengerForm').submit();">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+</div>
 @endsection
-
-
-                    <script src={{ asset( "js/vendor/jquery-2.2.4.min.js") }}></script>
-                    <script>
-                        $(document).ready(function() {
+ {{--
+<script src={{ asset( "js/vendor/jquery-2.2.4.min.js") }}></script>
+<script>
+    $(document).ready(function() {
         $("#openModal").on("click", function () {
             let trip_no = $(this).data('id');
             console.log(trip_no);
@@ -102,4 +51,4 @@
         });
     });
 
-                    </script>
+</script> --}}

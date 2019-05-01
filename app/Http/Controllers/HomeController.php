@@ -26,7 +26,6 @@ class HomeController extends Controller
     public function index()
     {
         $trips = Trip::all();
-        $stages = Stage::all();
-        return view('pages.home', compact('trips', 'stages'));
+        return view('pages.home', compact('trips'));
     }
 }

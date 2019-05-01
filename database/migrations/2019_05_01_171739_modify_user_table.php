@@ -17,7 +17,7 @@ class ModifyUserTable extends Migration {
 			$table->string('first_name', 45)->nullable();
 			$table->string('last_name', 45)->nullable();
 			$table->string('phone_no', 45)->nullable();
-			$table->boolean('role');
+			$table->boolean('role')->default(1);
 		});
 	}
 

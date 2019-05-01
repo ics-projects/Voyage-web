@@ -7,10 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Trip extends Model
 {
     protected $table = 'trip';
-    protected $primaryKey = 'trip_no';
 
-    public function bus_route()
+    public function schedule()
     {
-        return $this->belongsTo(BusRoute::class, 'route_no', 'route_no');
+        return $this->belongsTo(Schedule::class);
+    }
+
+    public function getRouteAttribute($value)
+    {
+        return Route::find($value);
+    }
+
+    public function getScheduleAttribute($value)
+    {
+        return Schedule::find($value);
     }
 }

@@ -14,7 +14,7 @@ class CreateScheduleTable extends Migration {
 	{
 		Schema::create('schedule', function(Blueprint $table)
 		{
-			$table->bigInteger('schedule', true)->unsigned();
+			$table->bigInteger('id', true)->unsigned();
 			$table->bigInteger('origin')->unsigned()->index('origin_idx');
 			$table->bigInteger('destination')->unsigned()->index('dept_idx');
 			$table->dateTime('dept_time')->nullable();
