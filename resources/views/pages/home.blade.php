@@ -17,22 +17,27 @@
                                 <p>Book Your Bus</p>
                             </li>
                         </div>
-                        <select class="form-control" id="departure" name="departure" placeholder="where from " onfocus="this.placeholder = ''" onblur="this.placeholder = 'from '">
+                        <select class="form-control" id="departure" name="departure" placeholder="where from "
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'from '">
                             @foreach ($trips as $trip)
-                            <option value="{{ $trip->id }}">{{ $trip->schedule->origin->name }}</option>
+                            <option value="{{ $trip->schedule->origin->id }}">{{ $trip->schedule->origin->name }}
+                            </option>
                             @endforeach
                         </select>
-                        <select class="form-control" id="destination" name="destination" placeholder="where to " onfocus="this.placeholder = ''" onblur="this.placeholder = ' To '">
+                        <select class="form-control" id="destination" name="destination" placeholder="where to "
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = ' To '">
                             @foreach ($trips as $trip)
-                            <option value="{{ $trip->id }}">{{ $trip->schedule->destination->name }}</option>
+                            <option value="{{ $trip->schedule->destination->id }}">{{ $trip->schedule->destination->name }}
+                            </option>
                             @endforeach
                         </select>
-                        <input type="date" class="form-control" name="date" placeholder="Date " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date '">
-                        <input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = 'Adults '">
-                        <input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = 'Child '">
-                        <a href="#" class="primary-btn text-uppercase">Search Buses</a>
+                        <input type="date" class="form-control" id="date" name="date" placeholder="Date "
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date '">
+                        <input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults "
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
+                        <input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child "
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '">
+                        <a href="#" id="search" class="primary-btn text-uppercase">Search Buses</a>
                     </form>
                 </div>
             </div>
@@ -40,15 +45,17 @@
     </div>
 </div>
 @endsection
- {{--
+
 <script src={{ asset( "js/vendor/jquery-2.2.4.min.js") }}></script>
 <script>
     $(document).ready(function() {
-        $("#openModal").on("click", function () {
-            let trip_no = $(this).data('id');
-            console.log(trip_no);
-            $(".modal-body #trip_no").val( trip_no );
+        $('#search').on('click', function () {
+            let departure = $('#departure').val();
+            let destination = $('#destination').val();
+            let date = $('#date').val();
+
+            window.location.replace(`/trip/?departure=${departure}&destination=${destination}&date=${date}`);
         });
     });
 
-</script> --}}
+</script>

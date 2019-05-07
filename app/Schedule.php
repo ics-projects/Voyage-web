@@ -11,12 +11,12 @@ class Schedule extends Model
 
     public function origin()
     {
-        return $this->belongsTo(Stage::class);
+        return $this->belongsTo(Stage::class, 'origin');
     }
 
     public function destination()
     {
-        return $this->belongsTo(Stage::class);
+        return $this->belongsTo(Stage::class, 'destination');
     }
 
     public function getOriginAttribute($value)

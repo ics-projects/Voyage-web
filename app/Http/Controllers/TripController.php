@@ -16,7 +16,20 @@ class TripController extends Controller
      */
     public function index()
     {
-        $trips = Trip::all();
+        $departure = request('departure');
+        $destination = request('destination');
+        $date = request('date');
+
+        $trips = NULL;
+        if ($departure !== NULL and $destination !== NULL and $date !== NULL) {
+            $trips = Trip::whereHas('schedule', function ($query) use(&$departure, &$destination) {
+                $query->where('origin', $departure)
+                    ->where('destination', $destination);
+            })->get();
+        } else {
+            $trips = Trip::all();
+        }
+
         return view('trips.index', compact('trips'));
     }
 
