@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('pages.landing');
 });
 
+Route::resource('/trip', 'TripController');
+Route::resource('/booking', 'BookingController');
+
 Auth::routes();
 
 
