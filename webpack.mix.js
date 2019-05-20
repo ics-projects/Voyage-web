@@ -25,6 +25,7 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/owl.carousel.min.js', 'public/js')
    .js('resources/js/popper.min.js', 'public/js')
    .js('resources/js/superfish.min.js', 'public/js')
+   .js('resources/js/jquery.seat-charts.js', 'public/js')
    .js('resources/js/home-page.js', 'public/js');
    // .styles('resources/css/*.css', 'public/css')
    // .sass('resources/sass/app.scss', 'public/css');

@@ -1,8 +1,4 @@
 @extends('layouts.layout')
-<header id="header">
-    @include('includes.header')
-</header>
-
 
 @section('content')
 <div class="section-gap">
