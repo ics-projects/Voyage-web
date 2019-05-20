@@ -27,7 +27,8 @@
                         <select class="form-control" id="destination" name="destination" placeholder="where to "
                             onfocus="this.placeholder = ''" onblur="this.placeholder = ' To '">
                             @foreach ($trips as $trip)
-                            <option value="{{ $trip->schedule->destination->id }}">{{ $trip->schedule->destination->name }}
+                            <option value="{{ $trip->schedule->destination->id }}">
+                                {{ $trip->schedule->destination->name }}
                             </option>
                             @endforeach
                         </select>
@@ -46,16 +47,7 @@
 </div>
 @endsection
 
-<script src={{ asset( "js/vendor/jquery-2.2.4.min.js") }}></script>
-<script>
-    $(document).ready(function() {
-        $('#search').on('click', function () {
-            let departure = $('#departure').val();
-            let destination = $('#destination').val();
-            let date = $('#date').val();
-
-            window.location.replace(`/trip/?departure=${departure}&destination=${destination}&date=${date}`);
-        });
-    });
-
-</script>
+@section('scripts')
+@parent
+<script src={{ asset( "js/home-page.js") }}></script>
+@endsection

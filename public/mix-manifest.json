@@ -1,4 +1,17 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/all.css": "/css/all.css"
+    "/js/bootstrap.min.js": "/js/bootstrap.min.js",
+    "/js/easing.min.js": "/js/easing.min.js",
+    "/js/home-page.js": "/js/home-page.js",
+    "/js/hoverIntent.js": "/js/hoverIntent.js",
+    "/js/jquery-2.2.4.min.js": "/js/jquery-2.2.4.min.js",
+    "/js/jquery-ui.js": "/js/jquery-ui.js",
+    "/js/jquery.ajaxchimp.min.js": "/js/jquery.ajaxchimp.min.js",
+    "/js/jquery.magnific-popup.min.js": "/js/jquery.magnific-popup.min.js",
+    "/js/jquery.nice-select.min.js": "/js/jquery.nice-select.min.js",
+    "/js/mail-script.js": "/js/mail-script.js",
+    "/js/main.js": "/js/main.js",
+    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js",
+    "/js/popper.min.js": "/js/popper.min.js",
+    "/js/superfish.min.js": "/js/superfish.min.js"
 }
