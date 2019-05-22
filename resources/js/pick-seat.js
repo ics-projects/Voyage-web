@@ -33,7 +33,6 @@ function createSeatChart(seatData) {
                     'ee_ee',
                     'eeeee',
                 ],
-                // data: seatData,
                 seats: {
                     f: {
                         price: 100,
@@ -67,9 +66,9 @@ function createSeatChart(seatData) {
                             .attr('id', 'cart-item-' + this.settings.id)
                             .data('seatId', this.settings.id)
                             .appendTo($cart);
-                        // $(`<option>${this.settings.label}</option>`)
-                        //     .val(this.settings.label)
-                        //     .appendTo($seats);
+                        $(`<option selected="selected">${this.settings.label}</option>`)
+                            .val(this.settings.label)
+                            .appendTo($seats);
                         $counter.text(sc.find('selected').length + 1);
                         $total.text(recalculateTotal(sc) + this.data().price);
                         return 'selected';
@@ -96,7 +95,7 @@ function createSeatChart(seatData) {
             sc.get($(this).parents('li:first').data('seatId')).click();
         });
         //let's pretend some seats have already been booked
-        sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
+        // sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
     });
     function recalculateTotal(sc) {
         var total = 0;

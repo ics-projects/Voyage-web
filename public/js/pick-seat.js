@@ -93,8 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var dataStore = function () {
-  var seatData = [];
+(function () {
   var url = window.location.pathname;
   var id = url.substring(url.lastIndexOf('/') + 1);
   $.ajax({
@@ -102,23 +101,21 @@ var dataStore = function () {
     url: "/api/trip/".concat(id),
     dataType: 'json',
     success: function success(response) {
-      $.each(response.seats, function (index, seat) {
-        seatData.push(seat);
-      });
-      createSeatChart(seatData);
+      createSeatChart(response.seats);
     }
   });
-}();
+})();
 
 function createSeatChart(seatData) {
   var firstSeatLabel = 1;
   $(document).ready(function () {
-    var $cart = $('#selected-seats'),
+    console.log(seatData);
+    var $seats = $('#form-seats');
+    var $cart = $('#details'),
         $counter = $('#counter'),
         $total = $('#total'),
         sc = $('#seat-map').seatCharts({
       map: ['ff_ff', 'ff_ff', 'ee_ee', 'ee_ee', 'ee___', 'ee_ee', 'ee_ee', 'ee_ee', 'eeeee'],
-      data: seatData,
       seats: {
         f: {
           price: 100,
@@ -147,6 +144,7 @@ function createSeatChart(seatData) {
         if (this.status() == 'available') {
           //let's create a new <li> which we'll add to the cart items
           $('<li>' + this.data().category + ' : Seat no ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>').attr('id', 'cart-item-' + this.settings.id).data('seatId', this.settings.id).appendTo($cart);
+          $("<option selected=\"selected\">".concat(this.settings.label, "</option>")).val(this.settings.label).appendTo($seats);
           $counter.text(sc.find('selected').length + 1);
           $total.text(recalculateTotal(sc) + this.data().price);
           return 'selected';
@@ -172,8 +170,7 @@ function createSeatChart(seatData) {
       //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
       sc.get($(this).parents('li:first').data('seatId')).click();
     }); //let's pretend some seats have already been booked
-
-    sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
+    // sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
   });
 
   function recalculateTotal(sc) {

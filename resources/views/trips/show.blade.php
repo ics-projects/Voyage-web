@@ -14,8 +14,7 @@
                             @csrf
                             <input id="trip_id" name="trip_id" type="text" style="display: none;"
                                 value="{{ $trip->id }}">
-                            {{-- <select id="selected-seats" name="seats[]" multiple="multiple"
-                                ></select> --}}
+                            <select id="form-seats" name="seats[]" multiple="multiple" style="display: none;"></select>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
