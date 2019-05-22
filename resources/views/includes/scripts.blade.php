@@ -9,10 +9,10 @@
 <script src={{ asset( "js/hoverIntent.js") }}></script>
 <script src={{ asset( "js/superfish.min.js") }}></script>
 <script src={{ asset( "js/jquery.ajaxchimp.min.js") }}></script>
-<script src={{ asset( "js/jquery.magnific-popup.min.js") }}></script>
+{{-- <script src={{ asset( "js/jquery.magnific-popup.min.js") }}></script> --}}
 <script src={{ asset( "js/jquery.nice-select.min.js") }}></script>
 <script src={{ asset( "js/owl.carousel.min.js") }}></script>
 <script src={{ asset( "js/mail-script.js") }}></script>
-<script src={{ asset( "js/main.js") }}></script>
+{{-- <script src={{ asset( "js/main.js") }}></script> --}}
 <script src={{ asset("js/jquery.seat-charts.js") }}></script>
 @show

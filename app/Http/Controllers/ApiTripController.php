@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Trip;
 use App\Seat;
 
-class TripController extends Controller
+class ApiTripController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,30 +14,6 @@ class TripController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $departure = request('departure');
-        $destination = request('destination');
-        $date = request('date');
-
-        $trips = NULL;
-        if ($departure !== NULL and $destination !== NULL and $date !== NULL) {
-            $trips = Trip::whereHas('schedule', function ($query) use(&$departure, &$destination) {
-                $query->where('origin', $departure)
-                    ->where('destination', $destination);
-            })->get();
-        } else {
-            $trips = Trip::all();
-        }
-
-        return view('trips.index', compact('trips'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -64,18 +40,7 @@ class TripController extends Controller
         $stages = $trip->route->stages;
         $bus = $trip->bus;
         $seats = Seat::where('bus', $bus)->get();
-        return view('trips.show', compact('trip', 'stages', 'seats'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json(compact('trip', 'stages', 'seats'), 200);
     }
 
     /**
