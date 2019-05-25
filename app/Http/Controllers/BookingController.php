@@ -28,26 +28,26 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         // dd(request());
-        $validated = request()->validate([
-            'pick-point' => ['required'],
-            'drop-point' => ['required'],
-        ]);
+        // $validated = request()->validate([
+        //     'pick-point' => ['required'],
+        //     'drop-point' => ['required'],
+        // ]);
 
-        $trip = Trip::find(request('trip_id'));
-        $seats = request('seats');
+        // $trip = Trip::find(request('trip_id'));
+        // $seats = request('seats');
 
-        foreach ($seats as $seat) { 
-            Seat::where('id', $seat)->update(['available' => 0]);
-        }
+        // foreach ($seats as $seat) { 
+        //     Seat::where('id', $seat)->update(['available' => 0]);
+        // }
 
-        $values = [
-            'user' => auth()->id(),
-            'schedule' => $trip->schedule->id,
-            'pick_point' => $validated['pick-point']
-        ];
+        // $values = [
+        //     'user' => auth()->id(),
+        //     'schedule' => $trip->schedule->id,
+        //     'pick_point' => $validated['pick-point']
+        // ];
 
-        Booking::create($values);
+        // Booking::create($values);
 
-        return redirect('/home');
+        // return redirect('/bookingPhase/pay');
     }
 }

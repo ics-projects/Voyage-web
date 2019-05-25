@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form id="bookingForm" method="POST" action="/booking">
+                        <form id="bookingForm" method="POST" action="/bookingPhase/pickseat">
                             @csrf
                             <input id="trip_id" name="trip_id" type="text" style="display: none;"
                                 value="{{ $trip->id }}">

@@ -18,8 +18,10 @@ Route::get('/', function () {
 Route::resource('/trip', 'TripController');
 Route::resource('/booking', 'BookingController');
 
+Route::post('/bookingPhase/pickseat', 'BookingPhasesController@pickSeat');
+Route::get('/bookingPhase/pay', 'BookingPhasesController@pay');
+
 Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
