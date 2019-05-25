@@ -15,24 +15,27 @@
 
 function createSeatChart(seatData) {
     let firstSeatLabel = 1;
+    let seatOffset = seatData[0].id - 1;
+    let map = [
+        'f___f',
+        'f___f',
+        'ee_ee',
+        'ee_ee',
+        'ee_ee',
+        'ee_ee',
+        'ee_ee',
+        'ee_ee',
+        'ee_ee',
+        'ee_ee',
+        'ee_ee'
+    ];
     $(document).ready(function () {
-        console.log(seatData);
         let $seats = $('#form-seats');
         let $cart = $('#details'),
             $counter = $('#counter'),
             $total = $('#total'),
             sc = $('#seat-map').seatCharts({
-                map: [
-                    'ff_ff',
-                    'ff_ff',
-                    'ee_ee',
-                    'ee_ee',
-                    'ee___',
-                    'ee_ee',
-                    'ee_ee',
-                    'ee_ee',
-                    'eeeee',
-                ],
+                map: map,
                 seats: {
                     f: {
                         price: 100,
@@ -50,6 +53,10 @@ function createSeatChart(seatData) {
                     getLabel: function (character, row, column) {
                         return firstSeatLabel++;
                     },
+                    getId: function (character, row, column) {
+                        return firstSeatLabel;
+                    }
+
                 },
                 legend: {
                     node: $('#legend'),
@@ -66,9 +73,10 @@ function createSeatChart(seatData) {
                             .attr('id', 'cart-item-' + this.settings.id)
                             .data('seatId', this.settings.id)
                             .appendTo($cart);
-                        $(`<option selected="selected">${this.settings.label}</option>`)
-                            .val(this.settings.label)
-                            .appendTo($seats);
+
+                        // create option element and append it to select element inside the form
+                        createOptionElement($seats, this.settings.label, this.settings.id);
+
                         $counter.text(sc.find('selected').length + 1);
                         $total.text(recalculateTotal(sc) + this.data().price);
                         return 'selected';
@@ -79,6 +87,8 @@ function createSeatChart(seatData) {
                         $total.text(recalculateTotal(sc) - this.data().price);
                         //remove the item from our cart
                         $('#cart-item-' + this.settings.id).remove();
+                        // remove item from form
+                        $('#form-item-'+ this.settings.id).remove();
                         //seat has been vacated
                         return 'available';
                     } else if (this.status() == 'unavailable') {
@@ -96,7 +106,26 @@ function createSeatChart(seatData) {
         });
         //let's pretend some seats have already been booked
         // sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
+
+        setUnavailableSeats(sc);
     });
+
+    function setUnavailableSeats(sc) {
+        $.each(seatData, function (index, seat) {
+            if (seat.available === 0) {
+                sc.get((seat.id - seatOffset).toString()).status('unavailable');
+            }
+        });
+    }
+
+    function createOptionElement($seats, label, id) {
+        let value = label + seatOffset;
+        $(`<option selected="selected">${label}</option>`)
+            .attr('id', 'form-item-' + id)
+            .val(value)
+            .appendTo($seats);
+    }
+
     function recalculateTotal(sc) {
         var total = 0;
         //basically find every selected seat and sum its price

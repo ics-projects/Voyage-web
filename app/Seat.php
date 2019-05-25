@@ -12,4 +12,9 @@ class Seat extends Model
     {
         return $this->belongsTo(Bus::class, 'bus');
     }
+
+    public function getSeatCategoryAttribute($value)
+    {
+        return SeatCategory::find($value);
+    }
 }
