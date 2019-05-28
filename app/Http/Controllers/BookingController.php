@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Booking;
 use App\Trip;
+use App\Seat;
 
 class BookingController extends Controller
 {
@@ -26,21 +27,27 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = request()->validate([
-            'pick-point' => ['required'],
-            'drop-point' => ['required'],
-        ]);
+        // dd(request());
+        // $validated = request()->validate([
+        //     'pick-point' => ['required'],
+        //     'drop-point' => ['required'],
+        // ]);
 
-        $trip = Trip::find(request('trip_id'));
+        // $trip = Trip::find(request('trip_id'));
+        // $seats = request('seats');
 
-        $values = [
-            'user' => auth()->id(),
-            'schedule' => $trip->schedule->id,
-            'pick_point' => $validated['pick-point']
-        ];
+        // foreach ($seats as $seat) { 
+        //     Seat::where('id', $seat)->update(['available' => 0]);
+        // }
 
-        Booking::create($values);
+        // $values = [
+        //     'user' => auth()->id(),
+        //     'schedule' => $trip->schedule->id,
+        //     'pick_point' => $validated['pick-point']
+        // ];
 
-        return redirect('/home');
+        // Booking::create($values);
+
+        // return redirect('/bookingPhase/pay');
     }
 }

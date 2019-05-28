@@ -81,68 +81,37 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/mail-script.js":
-/*!*************************************!*\
-  !*** ./resources/js/mail-script.js ***!
-  \*************************************/
+/***/ "./resources/js/home-page.js":
+/*!***********************************!*\
+  !*** ./resources/js/home-page.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// -------   Mail Send ajax
 $(document).ready(function () {
-  var form = $('#myForm'); // contact form
-
-  var submit = $('.submit-btn'); // submit button
-
-  var alert = $('.alert-msg'); // alert div for show alert message
-  // form submit event
-
-  form.on('submit', function (e) {
-    e.preventDefault(); // prevent default form submit
-
-    $.ajax({
-      url: 'mail.php',
-      // form action url
-      type: 'POST',
-      // form submit method get/post
-      dataType: 'html',
-      // request type html/json/xml
-      data: form.serialize(),
-      // serialize form data
-      beforeSend: function beforeSend() {
-        alert.fadeOut();
-        submit.html('Sending....'); // change submit button text
-      },
-      success: function success(data) {
-        alert.html(data).fadeIn(); // fade in response data
-
-        form.trigger('reset'); // reset form
-
-        submit.attr("style", "display: none !important");
-        ; // reset submit button text
-      },
-      error: function error(e) {
-        console.log(e);
-      }
-    });
+  $('#search').on('click', function () {
+    var departure = $('#departure').val();
+    var destination = $('#destination').val();
+    var date = $('#date').val();
+    window.location.replace("/trip/?departure=".concat(departure, "&destination=").concat(destination, "&date=").concat(date));
   });
 });
 
 /***/ }),
 
-/***/ 9:
-/*!*******************************************!*\
-  !*** multi ./resources/js/mail-script.js ***!
-  \*******************************************/
+/***/ 15:
+/*!*****************************************!*\
+  !*** multi ./resources/js/home-page.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/john/code/Voyage-web/resources/js/mail-script.js */"./resources/js/mail-script.js");
+module.exports = __webpack_require__(/*! /home/john/code/Voyage-web/resources/js/home-page.js */"./resources/js/home-page.js");
 
 
 /***/ })
