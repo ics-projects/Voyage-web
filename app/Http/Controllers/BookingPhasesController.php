@@ -50,7 +50,8 @@ class BookingPhasesController extends Controller
             $request->session()->has('schedule') &&
             $request->session()->has('pick-point') &&
             $request->session()->has('drop-point') &&
-            $request->session()->has('seats')
+            $request->session()->has('seats') &&
+            $request->session()->has('total-price')
         ) {
             $pick_point = $request->session()->get('pick-point');
             $drop_point = $request->session()->get('drop-point');
