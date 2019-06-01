@@ -8,7 +8,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Payment Options</h5>
-                        <form action="" method="post">
+                        <form action="/mpesa/stkpush" method="post">
+                            @csrf
+                            <input id="amount" name="amount" type="text" style="display: none;" value="{{ $total_price }}">
                             <div class="row">
                                 <div class="col-md-6">
                                     Mpesa Payment
@@ -35,6 +37,7 @@
                 <p>Boarding point: {{ $stages[0]->name }}</p>
                 <p>Drop Point: {{ $stages[1]->name }}</p>
                 <p>Departure time: {{ $departure_time }}</p>
+                <p>Total price: {{ $total_price }}</p>
             </div>
         </div>
     </div>
