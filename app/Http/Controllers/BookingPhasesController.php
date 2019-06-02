@@ -9,6 +9,7 @@ use App\Stage;
 use App\Schedule;
 use App\SeatPrice;
 use App\Booking;
+use Illuminate\Support\Facades\URL;
 
 class BookingPhasesController extends Controller
 {
@@ -41,11 +42,17 @@ class BookingPhasesController extends Controller
             ]
         );
 
-        return redirect('/bookingPhase/pay');
+        $pay_URL = URL::temporarySignedRoute('pay', now()->addMinutes(5));
+
+        return redirect($pay_URL);
     }
 
     public function pay(Request $request)
     {
+        if (!$request->hasValidSignature()) {
+            abort(401);
+        }
+
         if (
             $request->session()->has('trip_id') &&
             $request->session()->has('schedule') &&

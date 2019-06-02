@@ -19,7 +19,7 @@ Route::resource('/trip', 'TripController');
 Route::resource('/booking', 'BookingController');
 
 Route::post('/bookingPhase/pickseat', 'BookingPhasesController@pickSeat');
-Route::get('/bookingPhase/pay', 'BookingPhasesController@pay');
+Route::get('/bookingPhase/pay', 'BookingPhasesController@pay')->name('pay');
 Route::post('/mpesa/pay', 'MpesaController@pay');
 Route::post('/mpesa/stkpushcallback', 'MpesaController@stkPushCallback');
 

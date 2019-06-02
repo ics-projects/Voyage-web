@@ -52,6 +52,7 @@ class MpesaController extends Controller
                 return redirect('/home');
             }
         }
+        $request->session()->flush();
     }
 
     private function stkPush($Amount, $PartyA)
