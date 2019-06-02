@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Payment Options</h5>
-                        <form action="/mpesa/stkpush" method="post">
+                        <form action="/mpesa/pay" method="post">
                             @csrf
                             <input id="amount" name="amount" type="text" style="display: none;" value="{{ $total_price }}">
                             <div class="row">
