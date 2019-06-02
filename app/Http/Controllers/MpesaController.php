@@ -4,20 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Booking;
+use App\Trip;
+use App\Seat;
 
 class MpesaController extends Controller
 {
     private $BusinessShortCode = '174379';
     private $LipaNaMpesaPasskey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
-    private $checkoutRequestID;
 
-    public function stkpush()
+    public function pay(Request $request)
     {
-        $Amount = request('amount');
-        $PartyA = request('mobile-no');
+        if (
+            $request->session()->has('trip_id') &&
+            $request->session()->has('schedule') &&
+            $request->session()->has('pick-point') &&
+            $request->session()->has('drop-point') &&
+            $request->session()->has('seats') &&
+            $request->session()->has('total-price')
+        ) {
+            $trip_id = $request->session()->get('trip_id');
+            $trip = Trip::find($trip_id);
+
+            $pick_point = $request->session()->get('pick-point');
+            $total_price = $request->session()->get('total-price');
+            $seats = $request->session()->get('seats');
+
+            $Amount = request('amount');
+            $PartyA = request('mobile-no');
+            $CheckoutRequestID = $this->stkPush($Amount, $PartyA);
+
+            if ($CheckoutRequestID) {
+                $user = auth()->id();
+                foreach ($seats as $seat) {
+                    if ($user) {
+                        Booking::create([
+                            'user' => $user,
+                            'schedule' => $trip->schedule->id,
+                            'pick_point' => $pick_point,
+                            'amount' => $total_price,
+                            'confirmed' => false,
+                            'seat' => $seat,
+                            'checkout_request_id' => $CheckoutRequestID
+                        ]);
+                        Seat::where('id', $seat)->update(['available' => false]);
+                    }
+                }
+                return redirect('/home');
+            }
+        }
+    }
+
+    private function stkPush($Amount, $PartyA)
+    {
         $PartyB = $this->BusinessShortCode;
         $PhoneNumber = $PartyA;
-        $CallBackURL = 'https://5e5aac6e.ngrok.io/mpesa/stkpushcallback';
+        $CallBackURL = 'https://52f181fd.ngrok.io/mpesa/stkpushcallback';
         $AccountReference = 'Test';
         $TransactionDesc = 'This is a test';
         $Remarks = 'Remarks';
@@ -39,21 +80,23 @@ class MpesaController extends Controller
         );
 
         $response = json_decode($stkPushSimulation, true);
-        $this->checkoutRequestID = $response['CheckoutRequestID'];
-        // return $stkPushSimulation;
+
+        if ($response['ResponseCode'] == 0) {
+            return $response['CheckoutRequestID'];
+        }
+
+        return NULL;
     }
 
-    public function stkPushCallback()
+    public function stkPushCallback(Request $request)
     {
-        // Booking::create();
-        $mpesa = new \Safaricom\Mpesa\Mpesa();
-        $callbackData = $mpesa->getDataFromCallback();
-        $response_code = $callbackData['ResponseCode'];
-        $result_code = $callbackData['ResultCode'];
-        print_r($callbackData);
+        $data = $request->json()->all();
+        $result_code = $data['Body']['stkCallback']['ResultCode'];
 
-        if ($response_code == '0' and $result_code == '0') {
-            dd($callbackData);
+        if ($result_code == 0) {
+            $CheckoutRequestID = $data['Body']['stkCallback']['CheckoutRequestID'];
+            Booking::where('checkout_request_id', $CheckoutRequestID)
+                ->update(['confirmed' => true]);
         }
     }
 }

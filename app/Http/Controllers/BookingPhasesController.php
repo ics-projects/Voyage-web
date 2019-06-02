@@ -8,6 +8,7 @@ use App\Trip;
 use App\Stage;
 use App\Schedule;
 use App\SeatPrice;
+use App\Booking;
 
 class BookingPhasesController extends Controller
 {
@@ -16,8 +17,8 @@ class BookingPhasesController extends Controller
         $total_price = 0;
 
         $validated = request()->validate([
-            'pick-point' => ['required'],
-            'drop-point' => ['required'],
+            'pick-point' => ['required', 'integer'],
+            'drop-point' => ['required', 'integer'],
         ]);
 
         $trip_id = request('trip_id');
