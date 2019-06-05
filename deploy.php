@@ -25,7 +25,7 @@ add('writable_dirs', []);
 host('188.166.89.126')
     ->user('deployer')
     ->identityFile('~/.ssh/deployerkey')
-    ->set('deploy_path', '/var/www/voyage.com/html/Voyage-web/');    
+    ->set('deploy_path', '/var/www/voyage.com/html/Voyage-web');    
     
 // Tasks
 
