@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Trip;
 use App\Seat;
+use App\SeatPrice;
 
 class ApiTripController extends Controller
 {
@@ -13,9 +14,28 @@ class ApiTripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $trips = NULL;
+
+        if ($request->filled(['departure', 'destination', 'date'])) {
+            $departure = $request->query('departure');
+            $destination = $request->query('destination');
+            $date = $request->query('date');
+
+            $trips = Trip::join('seat_price', 'trip.id', '=', 'seat_price.trip')
+                ->whereHas('schedule', function ($query) use (&$departure, &$destination) {
+                    $query->where('origin', $departure)
+                        ->where('destination', $destination);
+                })->get();
+        } else {
+            $trips = Trip::all();
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $trips
+        ], 200);
     }
 
     /**
@@ -35,8 +55,17 @@ class ApiTripController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Trip $trip)
+    public function show($id)
     {
+        $trip = Trip::find($id);
+
+        if (!$trip) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No trips found'
+            ], 404);
+        }
+
         $stages = $trip->route->stages;
         $bus = $trip->bus;
         $seats = Seat::where('bus', $bus)->get();
