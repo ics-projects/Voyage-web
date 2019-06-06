@@ -1,10 +1,10 @@
 /******************************************************************
-Theme Name: Travel
-Description:
+Theme Name: Travel 
+Description: 
 Author: Colorlib
-Author URI:
+Author URI: 
 Version: 1.0
-Created:
+Created: 
 ******************************************************************/
 /*------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ Created:
 	1.3	Flexbox
 	1.4	Reset
 2.  Elements
-3.  Menu Style
+3.  Menu Style 
 4.  Home Page Style
 5.  About Page Style
 6.  Department Page Style
@@ -46,7 +46,7 @@ $black			: #222;
 
 */
 /* =================================== */
-/*  Basic Style
+/*  Basic Style 
 /* =================================== */
 ::-moz-selection {
   /* Code for Firefox */
@@ -2496,36 +2496,37 @@ body.mobile-nav-active #mobile-nav-toggle {
     height: auto !important;
   }
 }
-.banner-center h6 {
+
+.banner-left h6 {
   text-transform: uppercase;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 2px;
 }
 
-.banner-center h1 {
+.banner-left h1 {
   margin: 20px 0;
   font-size: 60px;
   text-transform: uppercase;
 }
 
 @media (max-width: 1199px) {
-  .banner-center h1 {
+  .banner-left h1 {
     font-size: 40px;
   }
 }
 
 @media (max-width: 413px) {
-  .banner-center h1 {
+  .banner-left h1 {
     font-size: 33px;
   }
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
-  . banner-center h1 {
+  .banner-left h1 {
     font-size: 36px;
   }
-  . banner-center h6 {
+  .banner-left h6 {
     font-size: 12px;
   }
 }
@@ -2574,16 +2575,16 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 0 !important;
 }
 
-.banner-right.tab-content {
+.banner-right .tab-content {
   background: #fff;
 }
 
-.banner.form-wrap {
+.banner-right .form-wrap {
   padding: 40px 30px;
   text-align: center;
 }
 
-.banner.form-wrap .form-control {
+.banner-right .form-wrap .form-control {
   padding: 0.675rem 0.75rem;
   font-size: 13px;
   font-weight: 300;
@@ -2592,18 +2593,18 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-color: #eee;
 }
 
-.banner.form-wrap .form-control:focus {
+.banner-right .form-wrap .form-control:focus {
   box-shadow: none;
 }
 
 @media (max-width: 1024px) {
-  .banner {
+  .banner-right {
     margin-top: 40px;
   }
 }
 
 @media (max-width: 767px) {
-  .banner {
+  .banner-right {
     padding-bottom: 50px;
   }
 }
