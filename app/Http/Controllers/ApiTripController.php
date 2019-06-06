@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Trip;
 use App\Seat;
-use App\SeatPrice;
+use App\Schedule;
+use App\Bus;
 
 class ApiTripController extends Controller
 {
@@ -23,11 +24,8 @@ class ApiTripController extends Controller
             $destination = $request->query('destination');
             $date = $request->query('date');
 
-            $trips = Trip::join('seat_price', 'trip.id', '=', 'seat_price.trip')
-                ->whereHas('schedule', function ($query) use (&$departure, &$destination) {
-                    $query->where('origin', $departure)
-                        ->where('destination', $destination);
-                })->get();
+            $trips = Schedule::with('trips')->where('origin', $departure)
+                ->where('destination', $destination)->get();
         } else {
             $trips = Trip::all();
         }
@@ -66,7 +64,7 @@ class ApiTripController extends Controller
             ], 404);
         }
 
-        $stages = $trip->route->stages;
+        $stages = $trip->routeID->stages;
         $bus = $trip->bus;
         $seats = Seat::where('bus', $bus)->get();
         return response()->json(compact('trip', 'stages', 'seats'), 200);

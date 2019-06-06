@@ -23,3 +23,5 @@ Route::middleware('auth:api')->group(function () {
 
 Route::post('login', 'PassportController@login');
 Route::post('register', 'PassportController@register');
+
+Route::post('/mpesa/stkpushcallback', 'MpesaController@stkPushCallback');

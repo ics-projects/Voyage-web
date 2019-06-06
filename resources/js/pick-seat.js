@@ -4,8 +4,11 @@
 
     $.ajax({
         method: 'GET',
-        url: `/api/trip/${id}`,
+        url: `/trip/${id}`,
         dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         success: function (response) {
             createSeatChart(response.seats);
         }
@@ -68,7 +71,6 @@ function createSeatChart(seatData) {
                 },
                 click: function () {
                     if (this.status() == 'available') {
-                        $total = recalculateTotal(sc) + this.data().price;
                         //let's create a new <li> which we'll add to the cart items
                         $('<li>' + this.data().category + ' : Seat no ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
                             .attr('id', 'cart-item-' + this.settings.id)
@@ -79,7 +81,7 @@ function createSeatChart(seatData) {
                         createOptionElement($seats, this.settings.label, this.settings.id);
 
                         $counter.text(sc.find('selected').length + 1);
-                        $total.text($total);
+                        $total.text(recalculateTotal(sc) + this.data().price);
                         return 'selected';
                     } else if (this.status() == 'selected') {
                         //update the counter
@@ -89,7 +91,7 @@ function createSeatChart(seatData) {
                         //remove the item from our cart
                         $('#cart-item-' + this.settings.id).remove();
                         // remove item from form
-                        $('#form-item-'+ this.settings.id).remove();
+                        $('#form-item-' + this.settings.id).remove();
                         //seat has been vacated
                         return 'available';
                     } else if (this.status() == 'unavailable') {
@@ -128,7 +130,7 @@ function createSeatChart(seatData) {
     }
 
     function recalculateTotal(sc) {
-        var total = 0;
+        let total = 0;
         //basically find every selected seat and sum its price
         sc.find('selected').each(function () {
             total += this.data().price;

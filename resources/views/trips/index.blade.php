@@ -12,10 +12,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $trip->schedule->origin->name }} - {{ $trip->schedule->destination->name }}</h5>
+                        <h5 class="card-title">{{ $trip->scheduleID->originID->name }} - {{ $trip->scheduleID->destinationID->name }}</h5>
                         {{--
                         <p class="col-md-3">NRB - MBSA</p> --}}
-                        <p class="col-md-3">Departure time: {{ $trip->schedule->dept_time }}</p>
+                        <p class="col-md-3">Departure time: {{ $trip->scheduleID->dept_time }}</p>
                         <p class="col-md-3">Cost: 25000</p>
                         {{--
                         <p class="card-text">NRB - MBSA</p> --}}

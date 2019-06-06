@@ -23,18 +23,18 @@ class BookingPhasesController extends Controller
         ]);
 
         $trip_id = request('trip_id');
-        $trip = Trip::find($trip_id);
-
         $seats = request('seats');
 
+        $trip = Trip::find($trip_id);
+
         $total_price = SeatPrice::join('seat', 'seat_price.category', '=', 'seat.seat_category')
-            ->whereIn('seat.id', [$seats])
+            ->whereIn('seat.id', $seats)
             ->sum('price');
 
         $request->session()->put(
             [
                 'trip_id' => $trip_id,
-                'schedule' => $trip->schedule->id,
+                'schedule' => $trip->scheduleID->id,
                 'pick-point' => $validated['pick-point'],
                 'drop-point' => $validated['drop-point'],
                 'seats' => $seats,

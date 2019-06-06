@@ -98,8 +98,11 @@
   var id = url.substring(url.lastIndexOf('/') + 1);
   $.ajax({
     method: 'GET',
-    url: "/api/trip/".concat(id),
+    url: "/trip/".concat(id),
     dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
     success: function success(response) {
       createSeatChart(response.seats);
     }

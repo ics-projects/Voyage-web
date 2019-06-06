@@ -4,28 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Stage;
+use App\Trip;
 
 class Schedule extends Model
 {
     protected $table = 'schedule';
 
-    public function origin()
+    public function trips()
     {
-        return $this->belongsTo(Stage::class, 'origin');
+        return $this->hasMany(Trip::class, 'schedule');
     }
 
-    public function destination()
+    public function originID()
     {
-        return $this->belongsTo(Stage::class, 'destination');
+        return $this->belongsTo(Stage::class, 'origin', 'id');
     }
 
-    public function getOriginAttribute($value)
+    public function destinationID()
     {
-        return Stage::find($value);
-    }
-
-    public function getDestinationAttribute($value)
-    {
-        return Stage::find($value);
+        return $this->belongsTo(Stage::class, 'destination', 'id');
     }
 }

@@ -32,8 +32,8 @@
                                     <div class="form-group">
                                         <label class="">Drop Point</label>
                                         <select class="form-control" id="drop-point" name="drop-point">
-                                            <option value="{{ $trip->schedule->destination->id }}">
-                                                {{ $trip->schedule->destination->name }}</option>
+                                            <option value="{{ $trip->scheduleID->destinationID->id }}">
+                                                {{ $trip->scheduleID->destinationID->name }}</option>
                                         </select>
                                     </div>
                                 </div>

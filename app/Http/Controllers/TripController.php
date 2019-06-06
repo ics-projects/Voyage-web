@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Trip;
 use App\Seat;
+use App\Schedule;
 
 class TripController extends Controller
 {
@@ -13,15 +14,16 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $departure = request('departure');
-        $destination = request('destination');
-        $date = request('date');
-
         $trips = NULL;
-        if ($departure !== NULL and $destination !== NULL and $date !== NULL) {
-            $trips = Trip::whereHas('schedule', function ($query) use(&$departure, &$destination) {
+
+        if ($request->filled(['departure', 'destination', 'date'])) {
+            $departure = $request->query('departure');
+            $destination = $request->query('destination');
+            $date = $request->query('date');
+
+            $trips = Trip::with('scheduleID')->whereHas('schedule', function ($query) use (&$departure, &$destination) {
                 $query->where('origin', $departure)
                     ->where('destination', $destination);
             })->get();
@@ -59,12 +61,16 @@ class TripController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Trip $trip)
+    public function show(Request $request, Trip $trip)
     {
-        $stages = $trip->route->stages;
+        $stages = $trip->routeID->stages;
         $bus = $trip->bus;
-        $seats = Seat::where('bus', $bus)->get();
-        return view('trips.show', compact('trip', 'stages', 'seats'));
+
+        if ($request->ajax()) {
+            $seats = Seat::where('bus', $bus)->get();
+            return response()->json(compact('trip', 'stages', 'seats'), 200);
+        }
+        return view('trips.show', compact('trip', 'stages'));
     }
 
     /**

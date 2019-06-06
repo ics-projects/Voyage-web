@@ -8,18 +8,18 @@ class Trip extends Model
 {
     protected $table = 'trip';
 
-    public function schedule()
+    public function busID()
+    {
+        return $this->belongsTo(Bus::class, 'bus');
+    }
+
+    public function scheduleID()
     {
         return $this->belongsTo(Schedule::class, 'schedule');
     }
 
-    public function getRouteAttribute($value)
+    public function routeID()
     {
-        return Route::find($value);
-    }
-
-    public function getScheduleAttribute($value)
-    {
-        return Schedule::find($value);
+        return $this->belongsTo(Route::class, 'route');
     }
 }

@@ -16,15 +16,15 @@
                         <select class="form-control" id="departure" name="departure" placeholder="where from "
                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'from '">
                             @foreach ($trips as $trip)
-                            <option value="{{ $trip->schedule->origin->id }}">{{ $trip->schedule->origin->name }}
+                            <option value="{{ $trip->scheduleID->originID->id }}">{{ $trip->scheduleID->originID->name }}
                             </option>
                             @endforeach
                         </select>
                         <select class="form-control" id="destination" name="destination" placeholder="where to "
                             onfocus="this.placeholder = ''" onblur="this.placeholder = ' To '">
                             @foreach ($trips as $trip)
-                            <option value="{{ $trip->schedule->destination->id }}">
-                                {{ $trip->schedule->destination->name }}
+                            <option value="{{ $trip->scheduleID->destinationID->id }}">
+                                {{ $trip->scheduleID->destinationID->name }}
                             </option>
                             @endforeach
                         </select>

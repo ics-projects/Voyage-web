@@ -39,7 +39,7 @@ class MpesaController extends Controller
                     if ($user) {
                         Booking::create([
                             'user' => $user,
-                            'schedule' => $trip->schedule->id,
+                            'schedule' => $trip->scheduleID->id,
                             'pick_point' => $pick_point,
                             'amount' => $total_price,
                             'confirmed' => false,
@@ -59,7 +59,7 @@ class MpesaController extends Controller
     {
         $PartyB = $this->BusinessShortCode;
         $PhoneNumber = $PartyA;
-        $CallBackURL = 'https://52f181fd.ngrok.io/mpesa/stkpushcallback';
+        $CallBackURL = 'https://4cd97b8f.ngrok.io/api/mpesa/stkpushcallback';
         $AccountReference = 'Test';
         $TransactionDesc = 'This is a test';
         $Remarks = 'Remarks';
@@ -82,8 +82,10 @@ class MpesaController extends Controller
 
         $response = json_decode($stkPushSimulation, true);
 
-        if ($response['ResponseCode'] == 0) {
-            return $response['CheckoutRequestID'];
+        if ($response) {
+            if ($response["ResponseCode"] == 0) {
+                return $response["CheckoutRequestID"];
+            }
         }
 
         return NULL;
@@ -92,10 +94,10 @@ class MpesaController extends Controller
     public function stkPushCallback(Request $request)
     {
         $data = $request->json()->all();
-        $result_code = $data['Body']['stkCallback']['ResultCode'];
+        $result_code = $data["Body"]["stkCallback"]["ResultCode"];
 
         if ($result_code == 0) {
-            $CheckoutRequestID = $data['Body']['stkCallback']['CheckoutRequestID'];
+            $CheckoutRequestID = $data["Body"]["stkCallback"]["CheckoutRequestID"];
             Booking::where('checkout_request_id', $CheckoutRequestID)
                 ->update(['confirmed' => true]);
         }
