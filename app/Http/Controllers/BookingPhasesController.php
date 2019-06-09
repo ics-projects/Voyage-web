@@ -8,8 +8,6 @@ use App\Trip;
 use App\Stage;
 use App\Schedule;
 use App\SeatPrice;
-use App\Booking;
-use Illuminate\Support\Facades\URL;
 
 class BookingPhasesController extends Controller
 {
@@ -42,7 +40,7 @@ class BookingPhasesController extends Controller
             ]
         );
 
-        $pay_URL = URL::temporarySignedRoute('pay', now()->addMinutes(5));
+        $pay_URL = url()->temporarySignedRoute('pay', now()->addMinutes(5));
 
         return redirect($pay_URL);
     }

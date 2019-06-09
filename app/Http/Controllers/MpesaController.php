@@ -14,44 +14,36 @@ class MpesaController extends Controller
 
     public function pay(Request $request)
     {
-        if (
-            $request->session()->has('trip_id') &&
-            $request->session()->has('schedule') &&
-            $request->session()->has('pick-point') &&
-            $request->session()->has('drop-point') &&
-            $request->session()->has('seats') &&
-            $request->session()->has('total-price')
-        ) {
-            $trip_id = $request->session()->get('trip_id');
-            $trip = Trip::find($trip_id);
+        $trip_id = $request->session()->get('trip_id');
+        $trip = Trip::find($trip_id);
 
-            $pick_point = $request->session()->get('pick-point');
-            $total_price = $request->session()->get('total-price');
-            $seats = $request->session()->get('seats');
+        $pick_point = $request->session()->get('pick-point');
+        $total_price = $request->session()->get('total-price');
+        $seats = $request->session()->get('seats');
 
-            $Amount = request('amount');
-            $PartyA = request('mobile-no');
-            $CheckoutRequestID = $this->stkPush($Amount, $PartyA);
+        $Amount = request('amount');
+        $PartyA = request('mobile-no');
+        $CheckoutRequestID = $this->stkPush($Amount, $PartyA);
 
-            if ($CheckoutRequestID) {
-                $user = auth()->id();
-                foreach ($seats as $seat) {
-                    if ($user) {
-                        Booking::create([
-                            'user' => $user,
-                            'schedule' => $trip->scheduleID->id,
-                            'pick_point' => $pick_point,
-                            'amount' => $total_price,
-                            'confirmed' => false,
-                            'seat' => $seat,
-                            'checkout_request_id' => $CheckoutRequestID
-                        ]);
-                        Seat::where('id', $seat)->update(['available' => false]);
-                    }
+        if ($CheckoutRequestID) {
+            $user = auth()->id();
+            foreach ($seats as $seat) {
+                if ($user) {
+                    Booking::create([
+                        'user' => $user,
+                        'schedule' => $trip->scheduleID->id,
+                        'pick_point' => $pick_point,
+                        'amount' => $total_price,
+                        'confirmed' => false,
+                        'seat' => $seat,
+                        'checkout_request_id' => $CheckoutRequestID
+                    ]);
+                    Seat::where('id', $seat)->update(['available' => false]);
                 }
-                return redirect('/home');
             }
+            return redirect('/home');
         }
+
         $request->session()->flush();
     }
 
