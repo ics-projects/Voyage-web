@@ -95,7 +95,7 @@
                 <div class="single-destination relative">
                     <div class="thumb relative">
                         <div class="overlay overlay-bg"></div>
-                        <img class="img-fluid" src="img/d1.jpg" alt="">
+                        <img class="img-fluid" src= {{ asset("img/d1.jpg") }} alt="">
                     </div>
                     <div class="desc">
                         <a href="#" class="price-btn">Ksh.3000</a>
@@ -108,7 +108,7 @@
                 <div class="single-destination relative">
                     <div class="thumb relative">
                         <div class="overlay overlay-bg"></div>
-                        <img class="img-fluid" src="img/d2.jpg" alt="">
+                        <img class="img-fluid" src={{ asset("img/d2.jpg") }} alt="">
                     </div>
                     <div class="desc">
                         <a href="#" class="price-btn">Ksh.2500</a>
@@ -121,7 +121,7 @@
                 <div class="single-destination relative">
                     <div class="thumb relative">
                         <div class="overlay overlay-bg"></div>
-                        <img class="img-fluid" src="img/d3.jpg" alt="">
+                        <img class="img-fluid" src={{ asset("img/d3.jpg") }} alt="">
                     </div>
                     <div class="desc">
                         <a href="#" class="price-btn">Ksh.1500</a>
@@ -142,7 +142,7 @@
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
-                    <h1 class="mb-10">We Provide Affordable Prices</h1 </div>
+                    <h1 class="mb-10">We Provide Affordable Prices</h1>
                 </div>
             </div>
             <div class="row">
