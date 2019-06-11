@@ -16,7 +16,7 @@ class CreateTripTable extends Migration {
 		{
 			$table->bigInteger('id', true)->unsigned();
 			$table->bigInteger('route')->unsigned()->index('route_idx');
-			$table->bigInteger('bus')->unsigned()->index('bus_idx');
+			$table->bigInteger('bus')->unsigned()->index('ix_bus_id');
 			$table->bigInteger('schedule')->unsigned()->index('schedule_idx');
 			$table->timestamp('time')->default(DB::raw('CURRENT_TIMESTAMP'));
 			$table->timestamps();

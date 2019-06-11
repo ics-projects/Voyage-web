@@ -14,7 +14,7 @@ class AddSeatToBookingTable extends Migration
     public function up()
     {
         Schema::table('booking', function (Blueprint $table) {
-            $table->bigInteger('seat')->unsigned()->index('seat_idx');
+            $table->bigInteger('seat')->unsigned()->nullable();
 
             $table->foreign('seat', 'fk_booking_seat')->references('id')
                 ->on('seat')->onUpdate('NO ACTION')->onDelete('CASCADE');

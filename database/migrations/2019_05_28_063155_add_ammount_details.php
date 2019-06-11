@@ -14,8 +14,8 @@ class AddAmmountDetails extends Migration
     public function up()
     {
         Schema::table('booking', function (Blueprint $table) {
-            $table->integer('amount');
-            $table->boolean('confirmed');
+            $table->integer('amount')->nullable();
+            $table->boolean('confirmed')->default(false);
         });
     }
 
