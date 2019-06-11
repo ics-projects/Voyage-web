@@ -78,7 +78,7 @@ jobs:
             - "8e:ae:53:76:20:41:7e:1e:9a:9e:e4:72:a3:c6:96:3b"
       - run:
           name: Install Deployer
-          command: 
+          command: |
             curl -LO https://deployer.org/deployer.phar
             sudo mv deployer.phar /usr/local/bin/dep
             sudo chmod +x /usr/local/bin/dep
