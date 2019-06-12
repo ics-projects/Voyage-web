@@ -6,6 +6,24 @@
  */
 
 require('./bootstrap');
+require('./jquery-ui');
+require('./easing.min.js');
+require('./global');
+require('./home-page');
+require('./hoverIntent');
+require('./jquery.ajaxchimp.min.js');
+require('./jquery.magnific-popup.min.js');
+require('./jquery.nice-select.min.js');
+require('./jquery.nicescroll');
+require('./jquery.seat-charts');
+require('./mail-script');
+require('./main');
+require('./owl.carousel.min.js');
+require('./pick-seat');
+// require('./popper.min.js');
+require('./scripts');
+require('./superfish.min.js');
+
 
 // window.Vue = require('vue');
 
