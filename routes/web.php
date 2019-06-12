@@ -23,11 +23,9 @@ Route::get('/signup', function () {
     return view('auth.signup');
 });
 
-Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('/home', 'HomeController@index')->name('home');
-//     return view('pages.landing');
-// });
+Auth::routes();
 
 Route::resource('/trip', 'TripController');
 Route::resource('/booking', 'BookingController');
@@ -36,13 +34,6 @@ Route::post('/bookingPhase/pickseat', 'BookingPhasesController@pickSeat');
 Route::get('/bookingPhase/pay', 'BookingPhasesController@pay')->name('pay');
 Route::post('/mpesa/pay', 'MpesaController@pay');
 // Route::post('/mpesa/stkpushcallback', 'MpesaController@stkPushCallback');
-
-Auth::routes();
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

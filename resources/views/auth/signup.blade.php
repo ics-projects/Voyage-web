@@ -25,11 +25,24 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user" style="font-size:24px"></i> </span>
               </div>
-              <input name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                placeholder="Full name" type="text">
-              @if ($errors->has('name'))
+              <input name="first_name" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
+                placeholder="First Name" type="text">
+              @if ($errors->has('first_name'))
               <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('name') }}</strong>
+                <strong>{{ $errors->first('first_name') }}</strong>
+              </span>
+              @endif
+            </div>
+
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user" style="font-size:24px"></i> </span>
+              </div>
+              <input name="last_name" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
+                placeholder="Last Name" type="text">
+              @if ($errors->has('last_name'))
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('last_name') }}</strong>
               </span>
               @endif
             </div>
@@ -59,12 +72,12 @@
               <input name="" class="form-control" placeholder="Phone number" type="text" required>
             </div>
 
-            <div class="form-group input-group">
+            {{-- <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="far fa-calendar-alt"></i> </span>
               </div>
               <input class="form-control" placeholder="Date of birth" type="date" required>
-            </div>
+            </div> --}}
 
             <div class="form-group input-group">
               <div class="input-group-prepend">
@@ -83,7 +96,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
               </div>
-              <input id="password-confirm" name="password-confirmation" class="form-control" placeholder="Repeat password" type="password" required>
+              <input id="password-confirm" class="form-control" type="password" class="form-control" name="password_confirmation" required>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block">
