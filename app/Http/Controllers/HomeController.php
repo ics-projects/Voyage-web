@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Trip;
+use App\Stage;
 
 class HomeController extends Controller
 {

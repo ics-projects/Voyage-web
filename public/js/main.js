@@ -14,9 +14,9 @@ $(document).ready(function() {
 
     // ------- Datepicker  js --------//  
 
-      $( function() {
-        $( ".date-picker" ).datepicker();
-      } );
+    $(function() {
+        $(".date-picker").datepicker();
+    });
 
 
     //------- Niceselect  js --------//  
@@ -29,7 +29,7 @@ $(document).ready(function() {
     };
     if (document.getElementById("service-select")) {
         $('select').niceSelect();
-    };    
+    };
 
     //------- Lightbox  js --------//  
 
@@ -62,60 +62,60 @@ $(document).ready(function() {
     //------- Owl Carusel  js --------//  
 
     $('.active-hot-deal-carusel').owlCarousel({
-        items:1,
-        loop:true,
-        autoplay:true,
-        autoplayHoverPause: true,        
-        smartSpeed:500,          
-        margin:30,
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayHoverPause: true,
+        smartSpeed: 500,
+        margin: 30,
         dots: true
     });
 
-     $('.active-testimonial').owlCarousel({
-            items: 2,
-            loop: true,
-            margin: 30,
-            autoplayHoverPause: true,
-            smartSpeed:500,              
-            dots: true,
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1,
-                },
-                992: {
-                    items: 2,
-                }
+    $('.active-testimonial').owlCarousel({
+        items: 2,
+        loop: true,
+        margin: 30,
+        autoplayHoverPause: true,
+        smartSpeed: 500,
+        dots: true,
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            992: {
+                items: 2,
             }
-        });
+        }
+    });
 
 
-        $('.active-recent-blog-carusel').owlCarousel({
-            items: 3,
-            loop: true,
-            margin: 30,
-            dots: true,
-            autoplayHoverPause: true, 
-            smartSpeed:500,               
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                961: {
-                    items: 3,
-                }
+    $('.active-recent-blog-carusel').owlCarousel({
+        items: 3,
+        loop: true,
+        margin: 30,
+        dots: true,
+        autoplayHoverPause: true,
+        smartSpeed: 500,
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 2,
+            },
+            961: {
+                items: 3,
             }
-        }); 
+        }
+    });
 
     //------- Mobile Nav  js --------//  
 
@@ -144,7 +144,7 @@ $(document).ready(function() {
             $('#mobile-body-overly').toggle();
         });
 
-            $(document).on('click', function(e) {
+        $(document).on('click', function(e) {
             var container = $("#mobile-nav, #mobile-nav-toggle");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 if ($('body').hasClass('mobile-nav-active')) {

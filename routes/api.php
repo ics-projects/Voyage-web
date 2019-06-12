@@ -16,3 +16,16 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->group(function () {
+    Route::resource('/trip', 'ApiTripController');
+    Route::post('/bookingPhase/pickSeat', 'ApiBookingPhasesController@pickSeat')
+        ->name('api.pickSeat');
+    Route::post('/bookingPhase/pay', 'ApiBookingPhasesController@pay')
+        ->name('api.pay');
+});
+
+Route::post('login', 'PassportController@login');
+Route::post('register', 'PassportController@register');
+
+Route::post('/mpesa/stkpushcallback', 'MpesaController@stkPushCallback');

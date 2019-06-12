@@ -10,6 +10,8 @@
 <meta name="keywords" content="">
 <!-- meta character set -->
 <meta charset="UTF-8">
+<!-- meta csrf token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Site Title -->
 <title>Booking Tickets</title>
 
@@ -25,3 +27,4 @@
 <link rel="stylesheet" href={{ asset( "css/animate.min.css") }}>
 <link rel="stylesheet" href={{ asset( "css/owl.carousel.css") }}>
 <link rel="stylesheet" href={{ asset( "css/main.css") }}>
+<link rel="stylesheet" href={{ asset("css/jquery.seat-charts.css") }}>
