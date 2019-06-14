@@ -42,7 +42,7 @@ task('artisan:passport:install', function () {
 
 desc('Install voyager admin');
 task('artisan:voyager:install', function () {
-    run('{{bin/php}} {{release_path}}/artisan voyager:install');
+    run('{{bin/php}} {{release_path}}/artisan voyager:install --force');
 });
 
 // install npm and build
