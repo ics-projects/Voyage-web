@@ -51,11 +51,14 @@ task('npm:install', function () {
     run('npm run production');
 });
 
-// Migrate database before symlink new release.
-
-before('deploy:symlink', [
+// install extensions and migrate db
+task('extensions', [
     'artisan:migrate',
     'artisan:passport:install',
     'artisan:voyager:install',
     'npm:install'
 ]);
+
+// Migrate database before symlink new release.
+
+before('deploy:symlink', 'extensions');
