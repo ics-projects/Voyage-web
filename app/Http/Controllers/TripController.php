@@ -17,21 +17,22 @@ class TripController extends Controller
     public function index(Request $request)
     {
         $trips = NULL;
+        $schedules = NULL;
 
         if ($request->filled(['departure', 'destination', 'date'])) {
             $departure = $request->query('departure');
             $destination = $request->query('destination');
             $date = $request->query('date');
 
-            $trips = Trip::with('scheduleID')->whereHas('schedule', function ($query) use (&$departure, &$destination) {
-                $query->where('origin', $departure)
-                    ->where('destination', $destination);
-            })->get();
-        } else {
-            $trips = Trip::all();
+            $schedules = Schedule::where('origin', $departure)
+                ->where('destination', $destination)
+                ->whereDate('dept_time', '>=', $date)
+                ->get();
+
+            return view('trips.index', compact('schedules'));
         }
 
-        return view('trips.index', compact('trips'));
+        return;
     }
 
     /**

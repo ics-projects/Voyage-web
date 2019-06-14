@@ -94,11 +94,14 @@
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  $('#search').on('click', function () {
+  $('#search').on('click', function (event) {
+    event.preventDefault();
     var departure = $('#departure').val();
     var destination = $('#destination').val();
-    var date = $('#date').val();
-    window.location.replace("/trip/?departure=".concat(departure, "&destination=").concat(destination, "&date=").concat(date));
+    var date_val = $('#date').val();
+    var departure_val = $('#departures [value="' + departure + '"]').data('value');
+    var destination_val = $('#destinations [value="' + destination + '"]').data('value');
+    window.location.replace("/trip/?departure=".concat(departure_val, "&destination=").concat(destination_val, "&\n            date=").concat(date_val));
   });
 });
 

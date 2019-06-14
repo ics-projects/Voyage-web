@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/signin', function () {
     return view('auth.signin');
@@ -22,8 +20,6 @@ Route::get('/signin', function () {
 Route::get('/signup', function () {
     return view('auth.signup');
 });
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

@@ -12,15 +12,15 @@ class Schedule extends Model
 
     public function trips()
     {
-        return $this->hasMany(Trip::class, 'schedule');
+        return $this->hasOne(Trip::class, 'schedule');
     }
 
-    public function originID()
+    public function origins()
     {
         return $this->belongsTo(Stage::class, 'origin', 'id');
     }
 
-    public function destinationID()
+    public function destinations()
     {
         return $this->belongsTo(Stage::class, 'destination', 'id');
     }

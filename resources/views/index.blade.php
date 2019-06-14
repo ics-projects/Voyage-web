@@ -24,24 +24,38 @@
 					<div class="card-title mt-3">
 						<h3 class="text-blue">Book your bus</h3>
 					</div>
-					<form class="form-inline" action="index.html" method="post">
+					<form class="form-inline" action="" method="post">
 						<div class="form-group">
 							<div class="col-sm-4">
-								<input type="text" class="form-control" name="from" placeholder="Where From">
+								<input id="departure" type="text" list="departures" class="form-control"
+									name="departure" placeholder="Where From">
+								<datalist id="departures">
+									@foreach ($schedules as $schedule)
+									<option value="{{ $schedule->origins->name }}" data-value="{{ $schedule->origin }}">
+									</option>
+									@endforeach
+								</datalist>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4">
-								<input type="text" class="form-control" name="destination" placeholder="Where to">
+								<input id="destination" type="text" list="destinations" class="form-control"
+									name="destination" placeholder="Where To">
+								<datalist id="destinations">
+									@foreach ($schedules as $schedule)
+									<option value="{{ $schedule->destinations->name }}"
+										data-value="{{ $schedule->destination }}"></option>
+									@endforeach
+								</datalist>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4">
-								<input type="date" class="form-control" name="date" placeholder="Date">
+								<input id="date" type="date" class="form-control" name="date" placeholder="Date">
 							</div>
 						</div>
 						<div class="search-widget">
-							<button type="button" class="btn btn-info">
+							<button id="search" type="button" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span> Search
 							</button>
 						</div>
@@ -216,4 +230,9 @@
 		</div>
 </section>
 <!-- End price Area -->
+@endsection
+
+@section('scripts')
+@parent
+<script src={{ asset( "js/home-page.js") }} defer></script>
 @endsection

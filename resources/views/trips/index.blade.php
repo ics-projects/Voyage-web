@@ -1,25 +1,18 @@
 @extends('layouts.layout')
-<header id="header">
-    @include('includes.header')
-</header>
 
 @section('content')
 <div class="section-gap">
     <div class="container">
 
-        @foreach ($trips as $trip)
+        @foreach ($schedules as $schedule)
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $trip->scheduleID->originID->name }} - {{ $trip->scheduleID->destinationID->name }}</h5>
-                        {{--
-                        <p class="col-md-3">NRB - MBSA</p> --}}
-                        <p class="col-md-3">Departure time: {{ $trip->scheduleID->dept_time }}</p>
+                        <h5 class="card-title">{{ $schedule->origins->name }} - {{ $schedule->destinations->name }}</h5>
+                        <p class="col-md-3">Departure time: {{ $schedule->dept_time }}</p>
                         <p class="col-md-3">Cost: 25000</p>
-                        {{--
-                        <p class="card-text">NRB - MBSA</p> --}}
-                        <a href="/trip/{{ $trip->id }}" class="btn btn-primary">Go</a>
+                        <a href="/trip/{{ $schedule->trips->id }}" class="btn btn-primary">Go</a>
                     </div>
                 </div>
             </div>

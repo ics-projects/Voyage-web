@@ -1,7 +1,4 @@
 @extends('layouts.layout')
-<header id="header">
-    @include('includes.header')
-</header>
 
 @section('content')
 <div class="section-gap">
@@ -32,8 +29,8 @@
                                     <div class="form-group">
                                         <label class="">Drop Point</label>
                                         <select class="form-control" id="drop-point" name="drop-point">
-                                            <option value="{{ $trip->scheduleID->destinationID->id }}">
-                                                {{ $trip->scheduleID->destinationID->name }}</option>
+                                            <option value="{{ $trip->scheduleID->destinations->id }}">
+                                                {{ $trip->scheduleID->destinations->name }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -70,5 +67,6 @@
 
 @section('scripts')
 @parent
-<script src={{ asset("js/pick-seat.js") }}></script>
+<script src={{ asset("js/jquery.seat-charts.js") }} defer></script>
+<script src={{ asset("js/pick-seat.js") }} defer></script>
 @endsection

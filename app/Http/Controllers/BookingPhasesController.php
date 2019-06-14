@@ -18,6 +18,7 @@ class BookingPhasesController extends Controller
         $validated = request()->validate([
             'pick-point' => ['required', 'integer'],
             'drop-point' => ['required', 'integer'],
+            'seats' => ['required']
         ]);
 
         $trip_id = request('trip_id');
@@ -69,7 +70,7 @@ class BookingPhasesController extends Controller
 
             return view('pages.pay-page', compact('stages', 'departure_time', 'total_price'));
         } else {
-            return redirect('/home');
+            return redirect('/');
         }
     }
 }

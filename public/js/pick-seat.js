@@ -107,13 +107,11 @@
       createSeatChart(response.seats);
     }
   });
-})();
 
-function createSeatChart(seatData) {
-  var firstSeatLabel = 1;
-  var seatOffset = seatData[0].id - 1;
-  var map = ['f___f', 'f___f', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee'];
-  $(document).ready(function () {
+  function createSeatChart(seatData) {
+    var firstSeatLabel = 1;
+    var seatOffset = seatData[0].id - 1;
+    var map = ['f___f', 'f___f', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee', 'ee_ee'];
     var $seats = $('#form-seats');
     var $cart = $('#details'),
         $counter = $('#counter'),
@@ -183,30 +181,35 @@ function createSeatChart(seatData) {
     // sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
 
     setUnavailableSeats(sc);
-  });
 
-  function setUnavailableSeats(sc) {
-    $.each(seatData, function (index, seat) {
-      if (seat.available === 0) {
-        sc.get((seat.id - seatOffset).toString()).status('unavailable');
-      }
-    });
-  }
+    function setUnavailableSeats(sc) {
+      $.each(seatData, function (index, seat) {
+        if (seat.available === 0) {
+          sc.get((seat.id - seatOffset).toString()).status('unavailable');
+        }
+      });
+    }
 
-  function createOptionElement($seats, label, id) {
-    var value = label + seatOffset;
-    $("<option selected=\"selected\">".concat(label, "</option>")).attr('id', 'form-item-' + id).val(value).appendTo($seats);
-  }
+    function createOptionElement($seats, label, id) {
+      var value = label + seatOffset;
+      $("<option selected=\"selected\">".concat(label, "</option>")).attr('id', 'form-item-' + id).val(value).appendTo($seats);
+    }
 
-  function recalculateTotal(sc) {
-    var total = 0; //basically find every selected seat and sum its price
+    function recalculateTotal(sc) {
+      var total = 0; //basically find every selected seat and sum its price
 
-    sc.find('selected').each(function () {
-      total += this.data().price;
-    });
-    return total;
-  }
-}
+      sc.find('selected').each(function () {
+        total += this.data().price;
+      });
+      return total;
+    }
+  } // // Public API
+  // return {
+  //     publicThing: publicThing,
+  //     sayPrivateThing: sayPrivateThing
+  // };
+
+})();
 
 /***/ }),
 

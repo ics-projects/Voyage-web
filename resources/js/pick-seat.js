@@ -14,25 +14,23 @@
         }
     });
 
-})();
+    function createSeatChart(seatData) {
+        let firstSeatLabel = 1;
+        let seatOffset = seatData[0].id - 1;
+        let map = [
+            'f___f',
+            'f___f',
+            'ee_ee',
+            'ee_ee',
+            'ee_ee',
+            'ee_ee',
+            'ee_ee',
+            'ee_ee',
+            'ee_ee',
+            'ee_ee',
+            'ee_ee'
+        ];
 
-function createSeatChart(seatData) {
-    let firstSeatLabel = 1;
-    let seatOffset = seatData[0].id - 1;
-    let map = [
-        'f___f',
-        'f___f',
-        'ee_ee',
-        'ee_ee',
-        'ee_ee',
-        'ee_ee',
-        'ee_ee',
-        'ee_ee',
-        'ee_ee',
-        'ee_ee',
-        'ee_ee'
-    ];
-    $(document).ready(function () {
         let $seats = $('#form-seats');
         let $cart = $('#details'),
             $counter = $('#counter'),
@@ -111,30 +109,38 @@ function createSeatChart(seatData) {
         // sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
 
         setUnavailableSeats(sc);
-    });
 
-    function setUnavailableSeats(sc) {
-        $.each(seatData, function (index, seat) {
-            if (seat.available === 0) {
-                sc.get((seat.id - seatOffset).toString()).status('unavailable');
-            }
-        });
+        function setUnavailableSeats(sc) {
+            $.each(seatData, function (index, seat) {
+                if (seat.available === 0) {
+                    sc.get((seat.id - seatOffset).toString()).status('unavailable');
+                }
+            });
+        }
+
+        function createOptionElement($seats, label, id) {
+            let value = label + seatOffset;
+            $(`<option selected="selected">${label}</option>`)
+                .attr('id', 'form-item-' + id)
+                .val(value)
+                .appendTo($seats);
+        }
+
+        function recalculateTotal(sc) {
+            let total = 0;
+            //basically find every selected seat and sum its price
+            sc.find('selected').each(function () {
+                total += this.data().price;
+            });
+            return total;
+        }
     }
 
-    function createOptionElement($seats, label, id) {
-        let value = label + seatOffset;
-        $(`<option selected="selected">${label}</option>`)
-            .attr('id', 'form-item-' + id)
-            .val(value)
-            .appendTo($seats);
-    }
+    // // Public API
+    // return {
+    //     publicThing: publicThing,
+    //     sayPrivateThing: sayPrivateThing
+    // };
 
-    function recalculateTotal(sc) {
-        let total = 0;
-        //basically find every selected seat and sum its price
-        sc.find('selected').each(function () {
-            total += this.data().price;
-        });
-        return total;
-    }
-}
+})();
+

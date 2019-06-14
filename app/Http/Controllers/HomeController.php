@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Trip;
-use App\Stage;
+use App\Schedule;
 
 class HomeController extends Controller
 {
@@ -25,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $schedules = Schedule::all();
+        return view('index', compact('schedules'));
     }
 }

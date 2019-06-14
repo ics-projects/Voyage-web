@@ -14,6 +14,10 @@ class MpesaController extends Controller
 
     public function pay(Request $request)
     {
+        $validated = request()->validate([
+            'mobile-no' => ['required', 'integer']
+        ]);
+
         $trip_id = $request->session()->get('trip_id');
         $trip = Trip::find($trip_id);
 
@@ -41,7 +45,7 @@ class MpesaController extends Controller
                     Seat::where('id', $seat)->update(['available' => false]);
                 }
             }
-            return redirect('/home');
+            return redirect('/');
         }
 
         $request->session()->flush();
@@ -75,8 +79,10 @@ class MpesaController extends Controller
         $response = json_decode($stkPushSimulation, true);
 
         if ($response) {
-            if ($response["ResponseCode"] == 0) {
-                return $response["CheckoutRequestID"];
+            if (isset($response["ResponseCode"])) {
+                if ($response["ResponseCode"] == 0) {
+                    return $response["CheckoutRequestID"];
+                }
             }
         }
 
