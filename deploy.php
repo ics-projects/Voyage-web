@@ -10,7 +10,7 @@ set('application', 'Voyage-web');
 set('repository', 'git@github.com:ics3-1projects/Voyage-web.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', true);
 
 // Shared files/dirs between deploys 
 add('shared_files', []);
@@ -24,9 +24,8 @@ add('writable_dirs', []);
 
 host('188.166.89.126')
     ->user('deployer')
-    // ->identityFile('~/.ssh/deployerkey')
-    ->set('deploy_path', '/var/www/voyage.com/html/Voyage-web');    
-    
+    ->set('deploy_path', '/var/www/voyage.com/html/Voyage-web');
+
 // Tasks
 
 task('build', function () {
@@ -36,7 +35,27 @@ task('build', function () {
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
+desc('Install passport');
+task('artisan:passport:install', function () {
+    run('{{bin/php}} {{release_path}}/artisan passport:install');
+});
+
+desc('Install voyager admin');
+task('artisan:voyager:install', function () {
+    run('{{bin/php}} {{release_path}}/artisan voyager:install');
+});
+
+// install npm and build
+task('npm:install', function () {
+    run('npm install');
+    run('npm run production');
+});
+
 // Migrate database before symlink new release.
 
-before('deploy:symlink', 'artisan:migrate');
-
+before('deploy:symlink', [
+    'artisan:migrate',
+    'artisan:passport:install',
+    'artisan:voyager:install',
+    'npm:install'
+]);
