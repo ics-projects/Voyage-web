@@ -15,6 +15,7 @@ class Stage extends Model
 
     public function routes()
     {
-        return $this->belongsToMany(Route::class, 'route_stage', 'route', 'stage');
+        return $this->belongsToMany(Route::class, 'route_stage', 'route_id', 'stage_id')
+            ->withPivot('stages_order');
     }
 }

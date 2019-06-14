@@ -14,8 +14,8 @@ class AddForeignKeysToBookingTable extends Migration {
 	{
 		Schema::table('booking', function(Blueprint $table)
 		{
-			$table->foreign('schedule', 'fk_booking_schedule')->references('id')->on('schedule')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('user', 'fk_booking_user')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('schedule', 'fk_booking_schedule')->references('id')->on('schedule')->onUpdate('NO ACTION')->onDelete('CASCADE');
+			$table->foreign('user', 'fk_booking_user')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('CASCADE');
 		});
 	}
 

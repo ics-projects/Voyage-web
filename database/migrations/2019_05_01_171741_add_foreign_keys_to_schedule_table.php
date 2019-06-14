@@ -14,8 +14,8 @@ class AddForeignKeysToScheduleTable extends Migration {
 	{
 		Schema::table('schedule', function(Blueprint $table)
 		{
-			$table->foreign('destination', 'fk_schedule_stage_destination')->references('id')->on('stage')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('origin', 'fk_schedule_stage_origin')->references('id')->on('stage')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('destination', 'fk_schedule_stage_destination')->references('id')->on('stage')->onUpdate('NO ACTION')->onDelete('CASCADE');
+			$table->foreign('origin', 'fk_schedule_stage_origin')->references('id')->on('stage')->onUpdate('NO ACTION')->onDelete('CASCADE');
 		});
 	}
 

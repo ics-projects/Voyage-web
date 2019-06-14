@@ -14,9 +14,9 @@ class AddForeignKeysToTripTable extends Migration {
 	{
 		Schema::table('trip', function(Blueprint $table)
 		{
-			$table->foreign('bus', 'fk_trip_bus')->references('id')->on('bus')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('route', 'fk_trip_route')->references('id')->on('route')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('schedule', 'fk_trip_schedule')->references('id')->on('schedule')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('bus', 'fk_trip_bus')->references('id')->on('bus')->onUpdate('NO ACTION')->onDelete('CASCADE');
+			$table->foreign('route', 'fk_trip_route')->references('id')->on('route')->onUpdate('NO ACTION')->onDelete('CASCADE');
+			$table->foreign('schedule', 'fk_trip_schedule')->references('id')->on('schedule')->onUpdate('NO ACTION')->onDelete('CASCADE');
 		});
 	}
 

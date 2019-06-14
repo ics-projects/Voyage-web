@@ -14,8 +14,8 @@ class AddForeignKeysToRouteStageTable extends Migration {
 	{
 		Schema::table('route_stage', function(Blueprint $table)
 		{
-			$table->foreign('route', 'fk_route_stage_route')->references('id')->on('route')->onUpdate('NO ACTION')->onDelete('CASCADE');
-			$table->foreign('stage', 'fk_route_stage_stage')->references('id')->on('stage')->onUpdate('NO ACTION')->onDelete('CASCADE');
+			$table->foreign('route_id', 'fk_route_stage_route')->references('id')->on('route')->onUpdate('NO ACTION')->onDelete('CASCADE');
+			$table->foreign('stage_id', 'fk_route_stage_stage')->references('id')->on('stage')->onUpdate('NO ACTION')->onDelete('CASCADE');
 		});
 	}
 

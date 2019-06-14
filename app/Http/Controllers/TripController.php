@@ -64,7 +64,7 @@ class TripController extends Controller
      */
     public function show(Request $request, Trip $trip)
     {
-        $stages = $trip->routeID->stages;
+        $stages = $trip->routes->stages;
         $bus = $trip->bus;
 
         if ($request->ajax()) {

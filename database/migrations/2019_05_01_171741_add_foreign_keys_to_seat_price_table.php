@@ -14,8 +14,8 @@ class AddForeignKeysToSeatPriceTable extends Migration {
 	{
 		Schema::table('seat_price', function(Blueprint $table)
 		{
-			$table->foreign('bus', 'fk_seat_price_bus')->references('id')->on('bus')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('trip', 'fk_seat_price_trip')->references('id')->on('trip')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('bus', 'fk_seat_price_bus')->references('id')->on('bus')->onUpdate('NO ACTION')->onDelete('CASCADE');
+			$table->foreign('trip', 'fk_seat_price_trip')->references('id')->on('trip')->onUpdate('NO ACTION')->onDelete('CASCADE');
 		});
 	}
 

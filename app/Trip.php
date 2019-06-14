@@ -18,7 +18,7 @@ class Trip extends Model
         return $this->belongsTo(Schedule::class, 'schedule');
     }
 
-    public function routeID()
+    public function routes()
     {
         return $this->belongsTo(Route::class, 'route');
     }

@@ -64,7 +64,7 @@ class ApiTripController extends Controller
             ], 404);
         }
 
-        $stages = $trip->routeID->stages;
+        $stages = $trip->routes->stages;
         $bus = $trip->bus;
         $seats = Seat::where('bus', $bus)->get();
         return response()->json(compact('trip', 'stages', 'seats'), 200);

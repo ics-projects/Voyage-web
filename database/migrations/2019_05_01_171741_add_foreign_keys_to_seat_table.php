@@ -15,7 +15,7 @@ class AddForeignKeysToSeatTable extends Migration {
 		Schema::table('seat', function(Blueprint $table)
 		{
 			$table->foreign('bus', 'fk_seat_bus')->references('id')->on('bus')->onUpdate('NO ACTION')->onDelete('CASCADE');
-			$table->foreign('seat_category', 'fk_seat_seat_category')->references('id')->on('seat_category')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('seat_category', 'fk_seat_seat_category')->references('id')->on('seat_category')->onUpdate('NO ACTION')->onDelete('CASCADE');
 		});
 	}
 

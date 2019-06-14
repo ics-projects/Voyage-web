@@ -17,7 +17,7 @@ class AddCategoryToPriceTable extends Migration
             $table->bigInteger('category')->unsigned()->nullable();
             $table->foreign('category', 'fk_seat_price_category')
                 ->references('id')->on('seat_category')
-                ->onUpdate('NO ACTION')->onDelete('NO ACTION');
+                ->onUpdate('NO ACTION')->onDelete('CASCADE');
         });
     }
 
