@@ -2,6 +2,7 @@
 namespace Deployer;
 
 require 'recipe/laravel.php';
+require 'recipe/npm.php';
 
 // Project name
 set('application', 'Voyage-web');
@@ -32,6 +33,8 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
+after('deploy:update_code', 'npm:install');
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
@@ -45,10 +48,9 @@ task('artisan:voyager:install', function () {
     run('{{bin/php}} {{release_path}}/artisan voyager:install --force');
 });
 
-// install npm and build
-task('npm:install', function () {
-    run('npm install');
-    run('npm run production');
+// build npm
+task('npm:run:prod', function () {
+    run("cd {{release_path}} && {{bin/npm}} install");
 });
 
 // install extensions and migrate db
@@ -56,7 +58,7 @@ task('extensions', [
     'artisan:migrate',
     'artisan:passport:install',
     'artisan:voyager:install',
-    'npm:install'
+    'npm:run:prod'
 ]);
 
 // Migrate database before symlink new release.
