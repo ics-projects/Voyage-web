@@ -7,10 +7,7 @@
 </head>
 
 <body>
-    <header id="header">
-        @include('includes.header')
-    </header>
-
+    @include('includes.navbar')
     <div id="main">
         @yield('content')
     </div>
@@ -20,10 +17,6 @@
     </footer>
 
     @include('includes.scripts')
-<<<<<<< HEAD
-=======
-
->>>>>>> Change ui
 </body>
 
 </html>

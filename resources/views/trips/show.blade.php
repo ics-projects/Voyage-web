@@ -29,13 +29,8 @@
                                     <div class="form-group">
                                         <label class="">Drop Point</label>
                                         <select class="form-control" id="drop-point" name="drop-point">
-<<<<<<< HEAD
                                             <option value="{{ $trip->scheduleID->destinations->id }}">
                                                 {{ $trip->scheduleID->destinations->name }}</option>
-=======
-                                            <option value="{{ $trip->scheduleID->destinationID->id }}">
-                                                {{ $trip->scheduleID->destinationID->name }}</option>
->>>>>>> Change ui
                                         </select>
                                     </div>
                                 </div>
@@ -72,10 +67,6 @@
 
 @section('scripts')
 @parent
-<<<<<<< HEAD
 <script src={{ asset("js/jquery.seat-charts.js") }} defer></script>
 <script src={{ asset("js/pick-seat.js") }} defer></script>
-=======
-<script src={{ asset("js/pick-seat.js") }}></script>
->>>>>>> Change ui
 @endsection
