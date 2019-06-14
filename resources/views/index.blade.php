@@ -9,8 +9,8 @@
 	<div class="container fullscreen">
 		<div class="row h-75 align-items-center justify-content-center">
 			<div class="col 12.col-md-8">
-				<h6 class="text-white">Away from monotonous life</h6>
-				<h1 class="text-white">Magical Experience</h1>
+				<h6 class="text-white">Away from Booking hustle!</h6>
+				<h1 class="text-white">Theatre of Dreams</h1>
 				<p class="text-white">
 					Booking bus tickets has never been easier!
 					<!--	<a href="#" class="primary-btn text-uppercase">Get Started</a>-->
@@ -18,9 +18,9 @@
 		</div>
 
 		<div class="row justify-content-md-center">
-			<div class="col 10.col-md-6">
+			<div class="col 6.col-md-12">
 				{{-- <div class="container" style="padding: 20px;"> --}}
-				<div class="card bg-light" style="padding: 20px;">
+				<div class="card" style="padding: 20px;">
 					<div class="card-title mt-3">
 						<h3 class="text-blue">Book your bus</h3>
 					</div>
@@ -40,11 +40,10 @@
 								<input type="date" class="form-control" name="date" placeholder="Date">
 							</div>
 						</div>
-						<div class="search-widget">
-							<button type="button" class="btn btn-info">
-								<span class="glyphicon glyphicon-search"></span> Search
+						
+							<button type="button" class="btn-log" >Search
 							</button>
-						</div>
+		
 					</form>
 				</div>
 			</div>

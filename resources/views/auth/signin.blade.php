@@ -9,8 +9,7 @@
         <h1 class="text-white">
           Log In
         </h1>
-        <p class="text-white link-nav"> Do you have an account?<span class="lnr lnr-arrow-right"></span> <a
-            href="signup.html">Create Account</a></p></a>
+        <p class="text-white link-nav"> Do you have an account?<span class="lnr lnr-arrow-right"></span> <a href="{{ url('/signup') }}">Create Account</a></p></a>
       </div>
     </div>
   </div>
@@ -64,7 +63,7 @@
 
           <div class="form-group row mb-0">
             <div class="col-md-8">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn-log">
                 {{ __('Login') }}
               </button>
 
