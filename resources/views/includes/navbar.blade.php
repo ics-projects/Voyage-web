@@ -9,8 +9,8 @@
                     <ul>
                         @guest
                         @if (Route::has('register'))
-                        <li><a href={{ url('/signin') }}>LOG IN</a></li>
-                        <li><a href={{ url('/signup') }}>SIGN UP</a></li>
+                        <li><a href={{ url('/login') }}>LOG IN</a></li>
+                        <li><a href={{ url('/register') }}>SIGN UP</a></li>
                         @endif @else
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ Auth::user()->name }}</a>

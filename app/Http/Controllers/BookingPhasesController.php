@@ -52,25 +52,14 @@ class BookingPhasesController extends Controller
             abort(401);
         }
 
-        if (
-            $request->session()->has('trip_id') &&
-            $request->session()->has('schedule') &&
-            $request->session()->has('pick-point') &&
-            $request->session()->has('drop-point') &&
-            $request->session()->has('seats') &&
-            $request->session()->has('total-price')
-        ) {
-            $pick_point = $request->session()->get('pick-point');
-            $drop_point = $request->session()->get('drop-point');
-            $schedule = $request->session()->get('schedule');
-            $total_price = $request->session()->get('total-price');
+        $pick_point = $request->session()->get('pick-point');
+        $drop_point = $request->session()->get('drop-point');
+        $schedule = $request->session()->get('schedule');
+        $total_price = $request->session()->get('total-price');
 
-            $stages = Stage::find([$pick_point, $drop_point]);
-            $departure_time = Schedule::find($schedule)->dept_time;
+        $stages = Stage::find([$pick_point, $drop_point]);
+        $departure_time = Schedule::find($schedule)->dept_time;
 
-            return view('pages.pay-page', compact('stages', 'departure_time', 'total_price'));
-        } else {
-            return redirect('/');
-        }
+        return view('pages.pay-page', compact('stages', 'departure_time', 'total_price'));
     }
 }

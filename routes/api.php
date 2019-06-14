@@ -21,7 +21,7 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('/trip', 'ApiTripController');
     Route::post('/bookingPhase/pickSeat', 'ApiBookingPhasesController@pickSeat')
         ->name('api.pickSeat');
-    Route::post('/bookingPhase/pay', 'ApiBookingPhasesController@pay')
+    Route::post('/bookingPhase/pay', 'ApiMpesaController@pay')
         ->name('api.pay');
 });
 

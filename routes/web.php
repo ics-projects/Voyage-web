@@ -12,14 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/signin', function () {
-    return view('auth.signin');
-});
-
-Route::get('/signup', function () {
-    return view('auth.signup');
-});
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
