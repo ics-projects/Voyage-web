@@ -11,20 +11,19 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/signin', function () {
-    return view('auth.signin');
+Route::get('/', function () {
+    return view('pages.landing');
 });
-
-Route::get('/signup', function () {
-    return view('auth.signup');
-});
-
-Auth::routes();
 
 Route::resource('/trip', 'TripController');
 Route::resource('/booking', 'BookingController');
+
+Route::post('/bookingPhase/pickseat', 'BookingPhasesController@pickSeat');
+Route::get('/bookingPhase/pay', 'BookingPhasesController@pay')->name('pay');
+Route::post('/mpesa/pay', 'MpesaController@pay');
+// Route::post('/mpesa/stkpushcallback', 'MpesaController@stkPushCallback');
+
+Auth::routes();
 
 Route::post('/bookingPhase/pickseat', 'BookingPhasesController@pickSeat');
 Route::get('/bookingPhase/pay', 'BookingPhasesController@pay')->name('pay');
