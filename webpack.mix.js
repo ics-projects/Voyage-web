@@ -29,19 +29,19 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/home-page.js', 'public/js')
    .js('resources/js/pick-seat.js', 'public/js')
    .styles([
-      'public/css/bootstrap/bootstrap.css',
-      'public/css/bootstrap/bootstrap-grid.css',
-      'public/css/bootstrap/bootstrap-reboot.css',
-      'public/css/animate.min.css',
-      'public/css/font-awesome.min.css',
-      'public/css/jquery-ui.css',
-      'public/css/jquery.seat-charts.css',
-      'public/css/linearicons.css',
-      'public/css/magnific-popup.css',
-      'public/css/main.css',
-      'public/css/nice-select.css',
-      'public/css/owl.carousel.css',
-      'public/css/style.css',
-      'public/css/jquery.seat-charts.css'
+      'resources/css/bootstrap/bootstrap.css',
+      'resources/css/bootstrap/bootstrap-grid.css',
+      'resources/css/bootstrap/bootstrap-reboot.css',
+      'resources/css/animate.min.css',
+      'resources/css/font-awesome.min.css',
+      'resources/css/jquery-ui.css',
+      'resources/css/jquery.seat-charts.css',
+      'resources/css/linearicons.css',
+      'resources/css/magnific-popup.css',
+      'resources/css/main.css',
+      'resources/css/nice-select.css',
+      'resources/css/owl.carousel.css',
+      'resources/css/style.css',
+      'resources/css/jquery.seat-charts.css'
    ], 'public/css/all.css');
    // .sass('resources/sass/app.scss', 'public/css');

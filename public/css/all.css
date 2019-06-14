@@ -14411,7 +14411,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   color: #fff;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 15px;
   text-transform: uppercase;
   outline: none;
 }
@@ -14697,7 +14697,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /*-------- Start Banner Area ------------*/
 .banner-area {
-  background: url(../img/hero-bg.jpg) center;
+  background: url(../img/bus_img.jpg) center;
   background-size: cover;
 }
 
@@ -15220,7 +15220,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .about-banner {
-  background: url(../img/top-banner.jpg) center;
+  background: url(../img/scania_bus.jpg) center;
   background-size: cover;
 }
 
@@ -16707,6 +16707,58 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .footer-text a, .footer-text i {
   color: #f8b600;
+}
+
+.btn-log {
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.btn-log {
+  background-color: white; 
+  color: black; 
+  border: 1px solid #f8b600;
+}
+
+.btn-log:hover {
+  background-color: #f8b600;
+  color: white;
+}
+.btn-register {
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.btn-register{
+  background-color: white; 
+  color: black; 
+  border: 1px solid #f8b600;
+}
+.btn-register:hover {
+  background-color: #f8b600;
+  color: white;
+}
+
+.search-btn{
+  color: red;
 }
 
 .nice-select {

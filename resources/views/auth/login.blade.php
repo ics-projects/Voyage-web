@@ -9,8 +9,8 @@
                 <h1 class="text-white">
                     Log In
                 </h1>
-                <p class="text-white link-nav"> Do you have an account?<span class="lnr lnr-arrow-right"></span> <a
-                        href="signup.html">Create Account</a></p></a>
+                <p class="text-white link-nav"> Do you have an account?<span class="lnr lnr-arrow-right"></span>
+                    <a href="{{ url('/register') }}">Create Account</a></p></a>
             </div>
         </div>
     </div>

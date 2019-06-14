@@ -8,9 +8,9 @@
                 <h1 class="text-white">
                     Sign Up
                 </h1>
-                <p class="text-white link-nav"> <a href="index.html">Voyage bus </a> <span
+                {{-- <p class="text-white link-nav"> <a href="index.html">Voyage bus </a> <span
                         class="lnr lnr-arrow-right"></span>
-                    <a href="about.html"> About Us</a></p>
+                    <a href="about.html"> About Us</a></p> --}}
             </div>
         </div>
     </div>
@@ -100,10 +100,10 @@
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         </div>
                         <input id="password-confirm" class="form-control" type="password" class="form-control"
-                            name="password_confirmation" required>
+                            name="password_confirmation" placeholder="Confirm Password" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button type="submit" class="btn-register">
                             {{ __('Register') }}
                         </button>
                     </div>
