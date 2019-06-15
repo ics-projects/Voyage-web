@@ -2,7 +2,7 @@
 namespace Deployer;
 
 require 'recipe/laravel.php';
-require 'recipe/npm.php';
+// require 'recipe/npm.php';
 
 // Project name
 set('application', 'Voyage-web');
@@ -33,7 +33,7 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
-after('deploy:update_code', 'npm:install');
+// after('deploy:update_code', 'npm:install');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
@@ -50,7 +50,7 @@ task('artisan:voyager:install', function () {
 
 // build npm
 task('npm:run:prod', function () {
-    run("cd {{release_path}} && {{bin/npm}} install");
+    run("cd {{release_path}} && {{bin/npm}} install && npm run prod");
 });
 
 // install extensions and migrate db
