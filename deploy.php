@@ -50,7 +50,7 @@ task('artisan:voyager:install', function () {
 
 // build npm
 task('npm:run:prod', function () {
-    run("cd {{release_path}} && {{bin/npm}} install && npm run prod");
+    run("cd {{release_path}} && npm install && npm run prod");
 });
 
 // install extensions and migrate db
