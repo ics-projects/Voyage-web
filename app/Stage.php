@@ -8,6 +8,8 @@ class Stage extends Model
 {
     protected $table = 'stage';
 
+    protected $fillable = ['name'];
+
     public function schedules()
     {
         return $this->hasMany(Schedule::class, 'origin', 'id');
@@ -15,7 +17,7 @@ class Stage extends Model
 
     public function routes()
     {
-        return $this->belongsToMany(Route::class, 'route_stage', 'route_id', 'stage_id')
-            ->withPivot('stages_order');
+        return $this->belongsToMany(Route::class, 'route_stage', 'stage_id', 'route_id');
+            // ->withPivot('stages_order');
     }
 }
