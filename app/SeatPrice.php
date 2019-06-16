@@ -8,7 +8,7 @@ class SeatPrice extends Model
 {
     protected $table = 'seat_price';
 
-    public function bus()
+    public function buses()
     {
         return $this->belongsTo(Bus::class, 'bus');
     }
