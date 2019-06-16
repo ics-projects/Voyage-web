@@ -14,10 +14,11 @@ class CreateRouteStageTable extends Migration {
 	{
 		Schema::create('route_stage', function(Blueprint $table)
 		{
+			$table->bigIncrements('id');
 			$table->bigInteger('route_id')->unsigned();
-			$table->bigInteger('stage_id')->unsigned()->index('stage_ID_idx');
+			$table->bigInteger('stage_id')->unsigned();
 			$table->integer('stages_order')->unsigned()->nullable();
-			$table->primary(['route_id','stage_id']);
+			$table->unique(['route_id', 'stage_id']);
 			$table->timestamps();
 		});
 	}
