@@ -46,13 +46,22 @@ class MpesaController extends Controller
                     Seat::where('id', $seat)->update(['available' => false]);
                 }
             }
-            $request->session()->flush();
+
+            $request->session()->forget([
+                'trip_id', 'schedule',
+                'pick-point', 'drop-point', 'seats', 'total-price'
+            ]);
+
             return redirect('/');
         } else {
             Log::error('Mpesa error' . $CheckoutRequestID);
         }
 
-        $request->session()->flush();
+        $request->session()->forget([
+            'trip_id', 'schedule',
+            'pick-point', 'drop-point', 'seats', 'total-price'
+        ]);
+
         return redirect('/');
     }
 
@@ -87,6 +96,8 @@ class MpesaController extends Controller
             if (isset($response["ResponseCode"])) {
                 if ($response["ResponseCode"] == 0) {
                     return $response["CheckoutRequestID"];
+                } else {
+                    Log::error('Mpesa Error' . $response);
                 }
             }
         }
