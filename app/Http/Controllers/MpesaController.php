@@ -87,6 +87,8 @@ class MpesaController extends Controller
             if (isset($response["ResponseCode"])) {
                 if ($response["ResponseCode"] == 0) {
                     return $response["CheckoutRequestID"];
+                } else {
+                    Log::error('Mpesa Error' . $response);
                 }
             }
         }
