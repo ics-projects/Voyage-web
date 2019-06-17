@@ -27,4 +27,9 @@ class HomeController extends Controller
         $schedules = Schedule::all();
         return view('index', compact('schedules'));
     }
+
+    public function home()
+    {
+        redirect('/');
+    }
 }

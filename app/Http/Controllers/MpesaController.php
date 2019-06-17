@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Booking;
 use App\Trip;
 use App\Seat;
+use Illuminate\Support\Facades\Log;
 
 class MpesaController extends Controller
 {
@@ -45,17 +46,21 @@ class MpesaController extends Controller
                     Seat::where('id', $seat)->update(['available' => false]);
                 }
             }
+            $request->session()->flush();
             return redirect('/');
+        } else {
+            Log::error('Mpesa error' . $CheckoutRequestID);
         }
 
         $request->session()->flush();
+        return redirect('/');
     }
 
     private function stkPush($Amount, $PartyA)
     {
         $PartyB = $this->BusinessShortCode;
         $PhoneNumber = $PartyA;
-        $CallBackURL = 'https://4cd97b8f.ngrok.io/api/mpesa/stkpushcallback';
+        $CallBackURL = 'https://voyageweb.tk/api/mpesa/stkpushcallback';
         $AccountReference = 'Test';
         $TransactionDesc = 'This is a test';
         $Remarks = 'Remarks';
