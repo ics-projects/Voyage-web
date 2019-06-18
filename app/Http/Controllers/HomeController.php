@@ -28,8 +28,7 @@ class HomeController extends Controller
         return view('index', compact('schedules'));
     }
 
-    public function home()
-    {
-        redirect('/');
+    public function user(){
+        return view('pages.home');
     }
 }
