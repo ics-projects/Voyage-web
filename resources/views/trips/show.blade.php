@@ -41,6 +41,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="col-md-3">
                 <div id="seat-map">
                     <div class="front-indicator">
@@ -52,10 +53,13 @@
             <div class="col-md-3">
                 <div class="booking-details">
                     <div id="legend"></div>
-                    <h3> Selected Seats (<span id="counter">0</span>):</h3>
+                    <br><br>
+                    <h4> Selected Seats (<span id="counter">0</span>):</h4>
                     <ul id="selected-seats" class="scrollbar scrollbar1"></ul>
-
-                    Total: <b>KSHs<span id="total">0</span></b>
+                    <br>
+                    <br>
+                    <hr>
+                    <h3>Total: <b>KSHs<span id="total">0</span></b></h3>
                 </div>
             </div>
         </div>

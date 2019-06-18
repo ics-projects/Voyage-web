@@ -2,7 +2,7 @@
 {{-- <script src={{ asset( "js/vendor/jquery-2.2.4.min.js") }}></script> --}}
 {{-- <script src={{ asset( "js/popper.min.js") }}></script> --}}
 {{-- <script src={{ asset( "js/vendor/bootstrap.min.js") }}></script> --}}
-{{-- <script src={{ asset("js/jquery.seat-charts.js") }}></script>
+<script src={{ asset("js/jquery.seat-charts.js") }}></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
 <script src={{ asset( "js/jquery-ui.js") }}></script>
 <script src={{ asset( "js/easing.min.js") }}></script>

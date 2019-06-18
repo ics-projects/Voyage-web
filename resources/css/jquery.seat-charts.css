@@ -25,11 +25,11 @@ div.seatCharts-seat {
 div.seatCharts-seat:focus {
 	border: none;
 }
-/*
+
 .seatCharts-seat:focus {
 	outline: none;
 }
-*/
+
 
 div.seatCharts-space {
 	background-color: white;
