@@ -23,14 +23,14 @@
 
 <div class="section-gap">
     <div class="container">
-        <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
+        <ul id="nav-tabs" class="nav nav-tabs nav-fill" role="tablist">
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" id="accounttab" role="tab" href="#accountdetails"
-                    aria-selected="true">Account details</a>
+                    aria-selected="false">Account details</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" id="bookingstab" role="tab" href="#bookingdetails"
-                    aria-selected="false">Bookings</a>
+                    aria-selected="true">Bookings</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" id="settingstab" role="tab" href="#settings"
@@ -39,7 +39,7 @@
         </ul>
         <div class="container tab-content">
             {{-- Account details --}}
-            <div class="container tab-pane show active" id="accountdetails" role="tabpanel"
+            <div class="container tab-pane" id="accountdetails" role="tabpanel"
                 aria-labelledby="accounttab">
                 <p>Account details</p>
                 <form action="{{ route('login') }}" method="post">
@@ -82,12 +82,12 @@
                                 </button>
                             </div>
                         </div>
-
+                    </article>
                 </form>
             </div>
 
             {{-- Booking tabs --}}
-            <div class="container tab-pane" id="bookingdetails" role="tabpanel" aria-labelledby="bookingstab">
+            <div class="container tab-pane show active" id="bookingdetails" role="tabpanel" aria-labelledby="bookingstab">
                 <p>Bookings</p>
 
             </div>
