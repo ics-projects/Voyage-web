@@ -13,9 +13,9 @@
                                 value="{{ $trip->id }}">
                             <select id="form-seats" name="seats[]" multiple="multiple" style="display: none;"></select>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="">Pick Point</label>
+                                        <label class=""><h6>PICK UP POINT</h6></label>
                                         <select class="form-control" id="pick-point" name="pick-point">
                                             @foreach ($stages as $stage)
                                             <option value="{{ $stage->id }}">{{ $stage->name }}</option>
@@ -25,9 +25,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="">Drop Point</label>
+                                        <label class=""><h6>DROP POINT</h6></label>
                                         <select class="form-control" id="drop-point" name="drop-point">
                                             <option value="{{ $trip->scheduleID->destinations->id }}">
                                                 {{ $trip->scheduleID->destinations->name }}</option>
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button id="submitBtn" type="submit" class="btn btn-primary pull-right">Save</button>
+                            <button id="submitBtn" type="submit" class="btn-log" style="width: 100%;">Proceed to Payment</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
@@ -55,9 +55,7 @@
                     <h3> Selected Seats (<span id="counter">0</span>):</h3>
                     <ul id="selected-seats" class="scrollbar scrollbar1"></ul>
 
-                    Total: <b>$<span id="total">0</span></b>
-
-                    {{-- <button class="checkout-button">Pay Now</button> --}}
+                    Total: <b>KSHs<span id="total">0</span></b>
                 </div>
             </div>
         </div>
@@ -66,6 +64,8 @@
 @endsection
 
 @section('scripts')
+
+
 @parent
 <script src={{ asset("js/jquery.seat-charts.js") }} defer></script>
 <script src={{ asset("js/pick-seat.js") }} defer></script>

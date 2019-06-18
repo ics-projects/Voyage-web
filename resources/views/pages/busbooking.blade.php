@@ -15,6 +15,7 @@
 <script src="../js/jquery-1.11.0.min.js"></script>
 <script src="../js/jquery.seat-charts.js"></script>
 </head>
+
 <body>
 <div class="content">
 	<h1>Bus ticket resevation</h1>
