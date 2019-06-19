@@ -7,13 +7,12 @@
                 </div>
                 <div class="col-lg-6 col-sm-6 col-6 header-top-right">
                     <ul>
-                        @guest
-                        @if (Route::has('register'))
-                        <li><a href={{ url('/login') }}>LOG IN</a></li>
-                        <li><a href={{ url('/register') }}>SIGN UP</a></li>
-                        @endif @else
+                        @if (Auth::guest())
+                        <li><a href={{ route('login') }}>LOG IN</a></li>
+                        <li><a href={{ route('register') }}>SIGN UP</a></li>
+                        @else
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
+                            <a class="nav-link" href="{{ url('user') }}">{{ Auth::user()->first_name }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -24,7 +23,7 @@
                                 @csrf
                             </form>
                         </li>
-                        @endguest
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -38,8 +37,8 @@
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li><a href={{ url('/') }}>Home</a></li>
-                    <li><a href=about.html>About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href={{ url('/about') }}>About</a></li>
+                    <li><a href={{ url('contact') }}>Contact</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
