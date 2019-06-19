@@ -30,3 +30,9 @@ Route::post('/mpesa/pay', 'MpesaController@pay');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('mailable', function () {
+    $bookings = App\Booking::where('user', 1)->get();
+
+    return new App\Mail\CustomerBooking($bookings);
+});

@@ -9,4 +9,9 @@ class Booking extends Model
     protected $table = 'booking';
 
     protected $guarded = [];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user');
+    }
 }
