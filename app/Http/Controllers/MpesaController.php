@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Booking;
 use App\Trip;
 use App\Seat;
+use Illuminate\Support\Facades\Log;
 
 class MpesaController extends Controller
 {
@@ -45,43 +46,91 @@ class MpesaController extends Controller
                     Seat::where('id', $seat)->update(['available' => false]);
                 }
             }
+
+            $request->session()->forget([
+                'trip_id', 'schedule',
+                'pick-point', 'drop-point', 'seats', 'total-price'
+            ]);
+
             return redirect('/');
+        } else {
+            Log::error('Mpesa error' . $CheckoutRequestID);
         }
 
-        $request->session()->flush();
+        $request->session()->forget([
+            'trip_id', 'schedule',
+            'pick-point', 'drop-point', 'seats', 'total-price'
+        ]);
+
+        return redirect('/');
     }
 
     private function stkPush($Amount, $PartyA)
     {
         $PartyB = $this->BusinessShortCode;
         $PhoneNumber = $PartyA;
-        $CallBackURL = 'https://4cd97b8f.ngrok.io/api/mpesa/stkpushcallback';
+        $CallBackURL = 'https://voyageweb.tk/api/mpesa/stkpushcallback';
         $AccountReference = 'Test';
         $TransactionDesc = 'This is a test';
         $Remarks = 'Remarks';
+        $timestamp = '20' . date("ymdhis");
+        $password = base64_encode($this->BusinessShortCode . $this->LipaNaMpesaPasskey . $timestamp);
 
         $TransactionType = 'CustomerPayBillOnline';
-        $mpesa = new \Safaricom\Mpesa\Mpesa();
-        $stkPushSimulation = $mpesa->STKPushSimulation(
-            $this->BusinessShortCode,
-            $this->LipaNaMpesaPasskey,
-            $TransactionType,
-            $Amount,
-            $PartyA,
-            $PartyB,
-            $PhoneNumber,
-            $CallBackURL,
-            $AccountReference,
-            $TransactionDesc,
-            $Remarks
+        $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+        $token = self::generateSandBoxToken();
+        //$token = 'eG6rCDpbcGg1TYAl7ddJBOBdGl7v';
+
+        // $mpesa = new \Safaricom\Mpesa\Mpesa();
+        // $stkPushSimulation = $mpesa->STKPushSimulation(
+        //     $this->BusinessShortCode,
+        //     $this->LipaNaMpesaPasskey,
+        //     $TransactionType,
+        //     $Amount,
+        //     $PartyA,
+        //     $PartyB,
+        //     $PhoneNumber,
+        //     $CallBackURL,
+        //     $AccountReference,
+        //     $TransactionDesc,
+        //     $Remarks
+        // );
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json', 'Authorization:Bearer ' . $token));
+
+        $curl_post_data = array(
+            'BusinessShortCode' => $this->BusinessShortCode,
+            'Password' => $password,
+            'Timestamp' => $timestamp,
+            'TransactionType' => $TransactionType,
+            'Amount' => $Amount,
+            'PartyA' => $PartyA,
+            'PartyB' => $PartyB,
+            'PhoneNumber' => $PhoneNumber,
+            'CallBackURL' => $CallBackURL,
+            'AccountReference' => $AccountReference,
+            'TransactionDesc' => $TransactionType
         );
 
-        $response = json_decode($stkPushSimulation, true);
+        $data_string = json_encode($curl_post_data);
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $curl_response = curl_exec($curl);
+
+        $response = json_decode($curl_response, true);
 
         if ($response) {
             if (isset($response["ResponseCode"])) {
                 if ($response["ResponseCode"] == 0) {
                     return $response["CheckoutRequestID"];
+                } else {
+                    Log::error('Mpesa Error' . $response);
                 }
             }
         }
@@ -99,5 +148,32 @@ class MpesaController extends Controller
             Booking::where('checkout_request_id', $CheckoutRequestID)
                 ->update(['confirmed' => true]);
         }
+    }
+
+    /**
+     * use this function to generate a sandbox token
+     * @return mixed
+     */
+    private static function generateSandBoxToken()
+    {
+        $consumer_key = config('mpesa.MPESA_CONSUMER_KEY', '');
+        $consumer_secret = config('mpesa.MPESA_CONSUMER_SECRET', '');
+
+        if (!isset($consumer_key) || !isset($consumer_secret)) {
+            die("please declare the consumer key and consumer secret as defined in the documentation");
+        }
+        $url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        $credentials = base64_encode($consumer_key . ':' . $consumer_secret);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Basic ' . $credentials)); //setting a custom header
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+        $curl_response = curl_exec($curl);
+
+        return json_decode($curl_response)->access_token;
     }
 }
