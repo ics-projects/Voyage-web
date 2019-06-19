@@ -14,4 +14,14 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class, 'user');
     }
+
+    public function schedules()
+    {
+        return $this->belongsTo(Schedule::class, 'schedule');
+    }
+
+    public function pick_points()
+    {
+        return $this->belongsTo(Stage::class, 'pick_point');
+    }
 }
