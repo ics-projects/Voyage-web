@@ -24,4 +24,12 @@ class Schedule extends Model
     {
         return $this->belongsTo(Stage::class, 'destination', 'id');
     }
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'dept_time',
+        'arrival_time'
+
+    ];
 }

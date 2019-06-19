@@ -23,6 +23,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $schedules = Schedule::all();
@@ -35,8 +41,9 @@ class HomeController extends Controller
     }
     
     public function user(){
-        $userid = session('id');
+        $userid = auth()->id();
         $userbookings = Booking::where('user', $userid)->get();
+
         return view('pages.home', compact('userbookings'));
     }
 }

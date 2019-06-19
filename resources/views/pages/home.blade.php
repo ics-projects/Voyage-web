@@ -1,9 +1,5 @@
 @extends('layouts.layout')
 
-<style>
-    .nav-item {}
-</style>
-
 @section('content')
 <section class="about-banner relative">
     <div class="overlay overlay-bg"></div>
@@ -88,11 +84,42 @@
             {{-- Booking tabs --}}
             <div class="container tab-pane show active" id="bookingdetails" role="tabpanel"
                 aria-labelledby="bookingstab">
-                <p>Bookings</p>
+                <br>
+                <h3>Bookings</h3>
+                <br>
+                @php
+                $scheduletime = null;
+                $newtime = null;
+                @endphp
                 @foreach ($userbookings as $userbooking)
-                <p>
-                    {{ $userbooking->user }}
-                </p>
+                @php
+                    $scheduletime = $userbooking->schedule;
+                @endphp
+
+                @if ($scheduletime!=null || $scheduletime!=$newtime)
+                <div class="card">
+                    <h5 class="card-header">{{ $userbooking->schedules->origins->name }} to
+                        {{ $userbooking->schedules->destinations->name }}
+                    </h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Departure time:
+                            {{ $userbooking->schedules->dept_time->format('d/m/Y')  }} at
+                            {{ $userbooking->schedules->dept_time->format('H:i a')  }}
+                        </h5>
+                        <hr>
+                        <div class="card-text">
+                            <ul>Number of seats
+                                <li>Seat 1</li>
+                                <li>Seat 2</li>
+                            </ul>
+                            <p>Arrival time: {{ $userbooking->schedules->arrival_time->format('H:i a')  }}</p>
+                            <b>Booking made: {{ $userbooking->created_at->format('d/m/Y  -  H:i a') }}</b>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+                @endif
                 @endforeach
             </div>
 
