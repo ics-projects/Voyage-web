@@ -90,13 +90,18 @@
                 @php
                 $scheduletime = null;
                 $newtime = null;
+                $bookedseats[] = null;
+                $seatnumber = null;
+
                 @endphp
                 @foreach ($userbookings as $userbooking)
                 @php
-                    $scheduletime = $userbooking->schedule;
+                $newtime = $userbooking->schedule;
+                // echo $newtime;
+                // print_r($userbooking);
                 @endphp
 
-                @if ($scheduletime!=null || $scheduletime!=$newtime)
+                @if ($scheduletime!=$newtime)
                 <div class="card">
                     <h5 class="card-header">{{ $userbooking->schedules->origins->name }} to
                         {{ $userbooking->schedules->destinations->name }}
@@ -108,18 +113,27 @@
                         </h5>
                         <hr>
                         <div class="card-text">
-                            <ul>Number of seats
-                                <li>Seat 1</li>
-                                <li>Seat 2</li>
+                            <ul><b>Number of seats:</b> {{ $count }}
+                                @foreach ($seats as $seat)
+                                    <li>Seat {{ $seat }} </li>
+                                @endforeach
                             </ul>
-                            <p>Arrival time: {{ $userbooking->schedules->arrival_time->format('H:i a')  }}</p>
+                            <br>
+                            <p>Arrival time: {{ $userbooking->schedules->arrival_time->format('d/m/Y  -  H:i a')  }}</p>
                             <b>Booking made: {{ $userbooking->created_at->format('d/m/Y  -  H:i a') }}</b>
                         </div>
                         <br>
                         <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>
+                @php
+                $scheduletime=$newtime;
+                // echo $scheduletime;
+                @endphp
+                @else
+
                 @endif
+
                 @endforeach
             </div>
 

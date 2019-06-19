@@ -43,7 +43,17 @@ class HomeController extends Controller
     public function user(){
         $userid = auth()->id();
         $userbookings = Booking::where('user', $userid)->get();
+        $count = $userbookings->count();
 
-        return view('pages.home', compact('userbookings'));
+        $seats = array();
+        foreach ($userbookings as $booking) {
+            array_push($seats, $booking->seat);
+        }
+        // dd(Booking::where('user', 1)->get()->mapWithKeys(function($key, $item) {return [$item];}));
+        // $userbookings
+
+        // dd($userbookings);
+
+        return view('pages.home', compact('userbookings', 'count', 'seats'));
     }
 }

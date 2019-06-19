@@ -17,4 +17,9 @@ class Seat extends Model
     {
         return $this->belongsTo(SeatCategory::class, 'seat_category');
     }
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class, 'seat');
+    }
 }

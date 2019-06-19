@@ -22,4 +22,9 @@ class Booking extends Model
     public function pick_points(){
         return $this->belongsTo(Stage::class, 'pick_point');
     }
+
+    public function seats()
+    {
+        return $this->belongsTo(Seat::class, 'seat');
+    }
 }
