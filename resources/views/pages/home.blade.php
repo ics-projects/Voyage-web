@@ -34,7 +34,7 @@
                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
                         <input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child "
                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '">
-                        <a href="#" id="search" class="primary-btn text-uppercase">Search Buses</a>
+                        <a href="#" id="search" class="primary-btn text-uppercase">Search</a>
                     </form>
                 </div>
             </div>
