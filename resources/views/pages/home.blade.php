@@ -39,8 +39,7 @@
         </ul>
         <div class="container tab-content">
             {{-- Account details --}}
-            <div class="container tab-pane" id="accountdetails" role="tabpanel"
-                aria-labelledby="accounttab">
+            <div class="container tab-pane" id="accountdetails" role="tabpanel" aria-labelledby="accounttab">
                 <p>Account details</p>
                 <form action="{{ route('login') }}" method="post">
                     @csrf
@@ -87,9 +86,14 @@
             </div>
 
             {{-- Booking tabs --}}
-            <div class="container tab-pane show active" id="bookingdetails" role="tabpanel" aria-labelledby="bookingstab">
+            <div class="container tab-pane show active" id="bookingdetails" role="tabpanel"
+                aria-labelledby="bookingstab">
                 <p>Bookings</p>
-
+                @foreach ($userbookings as $userbooking)
+                <p>
+                    {{ $userbooking->user }}
+                </p>
+                @endforeach
             </div>
 
             {{-- Settings --}}

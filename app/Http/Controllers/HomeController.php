@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Schedule;
+use App\Booking;
 
 class HomeController extends Controller
 {
@@ -31,5 +32,11 @@ class HomeController extends Controller
     public function home()
     {
         redirect('/');
+    }
+    
+    public function user(){
+        $userid = session('id');
+        $userbookings = Booking::where('user', $userid)->get();
+        return view('pages.home', compact('userbookings'));
     }
 }
