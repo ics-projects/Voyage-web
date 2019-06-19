@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('index');
+Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/user', 'HomeController@user')->name('account');
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');

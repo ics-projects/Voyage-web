@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="card bg-light">
-                    <div class="card-body mx-auto" style"max-width:600px">
+                    <div class="card-body mx-auto" style="max-width:600px">
                         <h5 class="card-title">Payment</h5>
                         <form action="/mpesa/pay" method="post">
                             @csrf
