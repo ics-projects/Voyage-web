@@ -42,6 +42,5 @@ mix.js('resources/js/app.js', 'public/js')
       'resources/css/nice-select.css',
       'resources/css/owl.carousel.css',
       'resources/css/style.css',
-      'resources/css/jquery.seat-charts.css'
    ], 'public/css/all.css');
    // .sass('resources/sass/app.scss', 'public/css');
