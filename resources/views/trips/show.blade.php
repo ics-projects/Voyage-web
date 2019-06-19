@@ -1,6 +1,21 @@
 @extends('layouts.layout')
 
 @section('content')
+<section class="about-banner relative">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Book your Seat
+                </h1>
+                <p class="text-white link-nav"> Do you have an account?<span class="lnr lnr-arrow-right"></span> <a href="#">Create Account</a></p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="section-gap">
     <div class="container">
         <div class="row">
@@ -41,7 +56,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="col-md-3">
                 <div id="seat-map">
                     <div class="front-indicator">

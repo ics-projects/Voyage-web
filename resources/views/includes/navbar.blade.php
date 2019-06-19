@@ -37,8 +37,8 @@
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li><a href={{ url('/') }}>Home</a></li>
-                    <li><a href=about.html>About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href={{ url('/about') }}>About</a></li>
+                    <li><a href={{ url('contact') }}>Contact</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
