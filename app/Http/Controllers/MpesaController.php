@@ -27,9 +27,8 @@ class MpesaController extends Controller
         $seats = $request->session()->get('seats');
 
         $Amount = request('amount');
-        $PartyA = request('mobile-no');
+        $PartyA = request('countrycode') . request('mobile-no');
         $CheckoutRequestID = $this->stkPush($Amount, $PartyA);
-
         if ($CheckoutRequestID) {
             $user = auth()->id();
             foreach ($seats as $seat) {
@@ -79,7 +78,6 @@ class MpesaController extends Controller
         $TransactionType = 'CustomerPayBillOnline';
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $token = self::generateSandBoxToken();
-        //$token = 'eG6rCDpbcGg1TYAl7ddJBOBdGl7v';
 
         // $mpesa = new \Safaricom\Mpesa\Mpesa();
         // $stkPushSimulation = $mpesa->STKPushSimulation(

@@ -89,7 +89,7 @@
 						<img class="img-fluid" src={{ asset("img/mombasa.jpg") }} alt="mombasa">
 					</div>
 					<div class="desc">
-						<p>Ksh.3000</p>
+						<p style="color:yellow">Ksh.3000</p></span>
 						<h4>Coast</h4>
 						<p>Mombasa</p>
 					</div>
@@ -102,7 +102,7 @@
 						<img class="img-fluid" src={{ asset('img/kisumu.jpg') }} alt="kisumu">
 					</div>
 					<div class="desc">
-						<p>Ksh.2500</p>
+						<p style="color:yellow">Ksh.2500</p>
 						<h4>Western Kenya</h4>
 						<p>Kisumu</p>
 					</div>
@@ -115,7 +115,7 @@
 						<img class="img-fluid" src={{ asset('img/nairobi.jpg') }} alt="nairobi">
 					</div>
 					<div class="desc">
-						<p>Ksh.1500</p>
+						<p style="color:yellow">Ksh.1500</p>
 						<h4>Nairobi</h4>
 						<p>Nairobi</p>
 					</div>
@@ -140,27 +140,27 @@
 							<ul class="price-list">
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nairobi</span>
-									<a href="#" class="price-btn">Ksh.1500</a>
+									<p>Ksh.1500</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Mombasa</span>
-									<a href="#" class="price-btn">Ksh.2000</a>
+									<p>Ksh.2000</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nakuru</span>
-									<a href="#" class="price-btn">Ksh.1000</a>
+									<p>Ksh.1000</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nanyuki</span>
-									<a href="#" class="price-btn">Ksh.1000</a>
+									<p>Ksh.1000</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Kisumu</span>
-									<a href="#" class="price-btn">ksh.1800</a>
+									<p>ksh.1800</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Malindi</span>
-									<a href="#" class="price-btn">Ksh.2000</a>
+									<p>Ksh.2000</p>
 								</li>
 							</ul>
 						</div>
@@ -171,27 +171,27 @@
 							<ul class="price-list">
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nairobi</span>
-									<a href="#" class="price-btn">Ksh.2000</a>
+									<p> Ksh.2000<p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Mombasa</span>
-									<a href="#" class="price-btn">Ksh.2500</a>
+									<p>Ksh.2500</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nakuru</span>
-									<a href="#" class="price-btn">Ksh.1400</a>
+									<p>Ksh.1400</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nanyuki</span>
-									<a href="#" class="price-btn">Ksh.1400</a>
+									<p>Ksh.1400</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Kisumu</span>
-									<a href="#" class="price-btn">Ksh.1800</a>
+									<p>Ksh.1800</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Malindi</span>
-									<a href="#" class="price-btn">Ksh.2000</a>
+									<p>Ksh.2000</p>
 								</li>
 							</ul>
 						</div>
@@ -202,27 +202,27 @@
 							<ul class="price-list">
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nairobi</span>
-									<a href="#" class="price-btn">Ksh.70000</a>
+									<p>Ksh.70000</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Mombasa</span>
-									<a href="#" class="price-btn">ksh. 84000</a>
+									<p>ksh. 84000</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nakuru</span>
-									<a href="#" class="price-btn">Ksh. 55000</a>
+									<p>Ksh. 55000</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Nanyuki</span>
-									<a href="#" class="price-btn">ksh 57000</a>
+									<p>ksh 57000</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Kisumu</span>
-									<a href="#" class="price-btn">ksh 76000</a>
+									<p>ksh 76000</p>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
 									<span>Malindi</span>
-									<a href="#" class="price-btn">Ksh.82000</a>
+									<p>Ksh.82000</p>
 								</li>
 							</ul>
 						</div>
