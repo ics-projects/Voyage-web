@@ -28,7 +28,7 @@
                         </div>
                         <input name="first_name"
                             class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
-                            placeholder="First Name" type="text">
+                            placeholder="First Name" type="text" value="{{ old('first_name') }}">
                         @if ($errors->has('first_name'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('first_name') }}</strong>
@@ -41,7 +41,7 @@
                             <span class="input-group-text"> <i class="fa fa-user" style="font-size:24px"></i> </span>
                         </div>
                         <input name="last_name" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                            placeholder="Last Name" type="text">
+                            placeholder="Last Name" type="text" value="{{ old('last_name') }}">
                         @if ($errors->has('last_name'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('last_name') }}</strong>
@@ -62,7 +62,7 @@
                         @endif
                     </div>
 
-                    <div class="form-group input-group">
+                    {{-- <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                         </div>
@@ -72,7 +72,7 @@
                             <option value="2">Uganda +256</option>
                         </select>
                         <input name="" class="form-control" placeholder="Phone number" type="text" required>
-                    </div>
+                    </div> --}}
 
                     {{-- <div class="form-group input-group">
               <div class="input-group-prepend">

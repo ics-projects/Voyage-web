@@ -231,6 +231,10 @@
 			</div>
 		</div>
 </section>
+@if(Session::has('status'))
+<p class="alert alert danger">{{ Session::get('status') }}</p>
+@endif
+
 <!-- End price Area -->
 @endsection
 

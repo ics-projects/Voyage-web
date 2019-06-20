@@ -60,7 +60,7 @@
               @endif
             </div>
 
-            <div class="form-group input-group">
+            {{-- <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
               </div>
@@ -69,8 +69,8 @@
                 <option value="1">Tanzania +255</option>
                 <option value="2">Uganda +256</option>
               </select>
-              <input name="" class="form-control" placeholder="Phone number" type="text" required>
-            </div>
+              <input name="phone_no" class="form-control" placeholder="Phone number" type="text" required>
+            </div> --}}
 
             {{-- <div class="form-group input-group">
               <div class="input-group-prepend">

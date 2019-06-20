@@ -7,6 +7,7 @@ use App\Booking;
 use App\Trip;
 use App\Seat;
 use Illuminate\Support\Facades\Log;
+use Session;
 
 class MpesaController extends Controller
 {
@@ -51,7 +52,8 @@ class MpesaController extends Controller
                 'trip_id', 'schedule',
                 'pick-point', 'drop-point', 'seats', 'total-price'
             ]);
-
+            
+            Session::flash('status', 'Order was successful, please check your phone to pay for the order to be confirmed');
             return redirect('/');
         } else {
             Log::error('Mpesa error' . $CheckoutRequestID);
@@ -61,7 +63,7 @@ class MpesaController extends Controller
             'trip_id', 'schedule',
             'pick-point', 'drop-point', 'seats', 'total-price'
         ]);
-
+        Session::flash('status', 'Oops, something went wrong, please try again');
         return redirect('/');
     }
 

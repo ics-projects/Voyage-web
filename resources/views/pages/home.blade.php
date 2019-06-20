@@ -24,61 +24,27 @@
                 <a class="nav-link" data-toggle="tab" id="accounttab" role="tab" href="#accountdetails"
                     aria-selected="false">Account details</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item show">
                 <a class="nav-link" data-toggle="tab" id="bookingstab" role="tab" href="#bookingdetails"
                     aria-selected="true">Bookings</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" id="settingstab" role="tab" href="#settings"
                     aria-selected="false">Settings</a>
-            </li>
+            </li> --}}
         </ul>
         <div class="container tab-content">
             {{-- Account details --}}
             <div class="container tab-pane" id="accountdetails" role="tabpanel" aria-labelledby="accounttab">
-                <p>Account details</p>
-                <form action="{{ route('login') }}" method="post">
-                    @csrf
-                    <article class="card-body mx-auto" style="max-width: 400px;">
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user" style="font-size:24px"></i>
-                                </span>
-                            </div>
-                            <input name="last_name"
-                                class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                                placeholder="Last Name" type="text">
-                            @if ($errors->has('last_name'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('last_name') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user" style="font-size:24px"></i>
-                                </span>
-                            </div>
-                            <input name="last_name"
-                                class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                                placeholder="Last Name" type="text">
-                            @if ($errors->has('last_name'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('last_name') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                </form>
+                <br>
+                <h3>Account details</h3>
+                <br>
+                <p>First name: {{ Auth::user()->first_name }} </p>
+                <br>
+                <p>Last name: {{ Auth::user()->last_name }} </p>
+                <br>
+                <p>Email: {{ Auth::user()->email }} </p>
+                <br>
             </div>
 
             {{-- Booking tabs --}}
@@ -94,11 +60,16 @@
                 $seatnumber = null;
 
                 @endphp
+
+                @if ($count<1)
+                <h4>You have no pending bookings</h4>
+                {{-- {{ print_r($userbooking) }} --}}
+                @else
                 @foreach ($userbookings as $userbooking)
                 @php
                 $newtime = $userbooking->schedule;
                 // echo $newtime;
-                // print_r($userbooking);
+                print_r($userbooking);
                 @endphp
 
                 @if ($scheduletime!=$newtime)
@@ -113,9 +84,9 @@
                         </h5>
                         <hr>
                         <div class="card-text">
-                            <ul><b>Number of seats:</b> {{ $count }}
+                            <ul><b>Number of seats:<span class="badge badge-primary badge-pill">{{ $count }}</span></b>
                                 @foreach ($seats as $seat)
-                                    <li>Seat {{ $seat }} </li>
+                                <li>Seat {{ $seat }} </li>
                                 @endforeach
                             </ul>
                             <br>
@@ -130,16 +101,18 @@
                 $scheduletime=$newtime;
                 // echo $scheduletime;
                 @endphp
-                @else
-
+                @endif
+                @endforeach
                 @endif
 
-                @endforeach
+
             </div>
 
             {{-- Settings --}}
             <div class="container tab-pane" id="settings" role="tabpanel" aria-labelledby="settingstab">
-                <p>Settings</p>
+                <br>
+                <h3>Settings</h3>
+                <br>
             </div>
         </div>
     </div>
