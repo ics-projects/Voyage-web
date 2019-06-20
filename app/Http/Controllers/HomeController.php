@@ -25,7 +25,7 @@ class HomeController extends Controller
    */
   public function index()
   {
-    $schedules = Schedule::all();
+    $schedules = Schedule::all()->unique('origin')->unique('destination');
     return view('index', compact('schedules'));
   }
 
