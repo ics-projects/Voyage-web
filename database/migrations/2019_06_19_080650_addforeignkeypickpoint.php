@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -17,7 +16,6 @@ class Addforeignkeypickpoint extends Migration
             $table->foreign('pick_point', 'fk_pick_point')->references('id')->on('stage')->onUpdate('NO ACTION')->onDelete('CASCADE');
         });
     }
-
     /**
      * Reverse the migrations.
      *
