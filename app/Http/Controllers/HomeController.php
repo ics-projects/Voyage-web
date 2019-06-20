@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Schedule;
+use App\Booking;
 
 class HomeController extends Controller
 {
@@ -33,10 +34,22 @@ class HomeController extends Controller
     redirect('/');
   }
 
-  public function user()
-  {
-    return view('pages.home');
-  }
+    public function user(){
+        $userid = auth()->id();
+        $userbookings = Booking::where('user', $userid)->get();
+        $count = $userbookings->count();
+
+        $seats = array();
+        foreach ($userbookings as $booking) {
+            array_push($seats, $booking->seat);
+        }
+        // dd(Booking::where('user', 1)->get()->mapWithKeys(function($key, $item) {return [$item];}));
+        // $userbookings
+
+        // dd($userbookings);
+
+        return view('pages.home', compact('userbookings', 'count', 'seats'));
+    }
 
   public function about()
   {

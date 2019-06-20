@@ -1,5 +1,5 @@
-$(document).ready(function () {
-    $('#search').on('click', function (event) {
+$(document).ready(function() {
+    $('#search').on('click', function(event) {
         event.preventDefault();
 
         let departure = $('#departure').val();
@@ -12,5 +12,10 @@ $(document).ready(function () {
         window.location
             .replace(`/trip/?departure=${departure_val}&destination=${destination_val}&
             date=${date_val}`);
+    });
+
+    $('#nav-tabs a').on('click', function(e) {
+        e.preventDefault()
+        $(this).tab('show active')
     });
 });
