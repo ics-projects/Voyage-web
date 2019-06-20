@@ -17,11 +17,8 @@
 
     </div>
     <!-- start footer Area -->
-    <footer class="footer-area section-gap">
+    @include('includes.footer')
 
-        @include('includes.footer')
-
-    </footer>
 
     @include('includes.scripts')
 </body>

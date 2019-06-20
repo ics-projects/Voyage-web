@@ -1,9 +1,5 @@
 @extends('layouts.layout')
 
-<style>
-    .nav-item {}
-</style>
-
 @section('content')
 <section class="about-banner relative">
     <div class="overlay overlay-bg"></div>
@@ -73,7 +69,6 @@
                 @php
                 $newtime = $userbooking->schedule;
                 // echo $newtime;
-                print_r($userbooking);
                 @endphp
 
                 @if ($scheduletime!=$newtime)
