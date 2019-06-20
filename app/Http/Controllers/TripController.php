@@ -26,7 +26,7 @@ class TripController extends Controller
 
             $schedules = Schedule::where('origin', $departure)
                 ->where('destination', $destination)
-                ->whereDate('dept_time', '>=', $date)
+                ->whereDate('dept_time', '=', $date)
                 ->get();
 
             return view('trips.index', compact('schedules'));

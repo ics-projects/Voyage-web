@@ -8,6 +8,8 @@ use App\Trip;
 use App\Seat;
 use Illuminate\Support\Facades\Log;
 use Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CustomerBooking;
 
 class MpesaController extends Controller
 {
@@ -145,8 +147,11 @@ class MpesaController extends Controller
 
         if ($result_code == 0) {
             $CheckoutRequestID = $data["Body"]["stkCallback"]["CheckoutRequestID"];
-            Booking::where('checkout_request_id', $CheckoutRequestID)
-                ->update(['confirmed' => true]);
+            $bookings = Booking::where('checkout_request_id', $CheckoutRequestID);
+            $bookings->update(['confirmed' => true]);
+            $results = $bookings->get();
+
+            Mail::to($request->user()->email)->send(new CustomerBooking($results));
         }
     }
 
