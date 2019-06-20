@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+<style>
+    .nav-item {}
+</style>
+
 @section('content')
 <section class="about-banner relative">
     <div class="overlay overlay-bg"></div>
@@ -104,15 +108,6 @@
                 @endif
                 @endforeach
                 @endif
-
-
-            </div>
-
-            {{-- Settings --}}
-            <div class="container tab-pane" id="settings" role="tabpanel" aria-labelledby="settingstab">
-                <br>
-                <h3>Settings</h3>
-                <br>
             </div>
         </div>
     </div>

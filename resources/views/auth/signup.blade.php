@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+
 @section('content')
   <section class="about-banner relative">
     <div class="overlay overlay-bg"></div>

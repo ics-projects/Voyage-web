@@ -103,7 +103,7 @@
                             name="password_confirmation" placeholder="Confirm Password" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn-register">
+                        <button type="submit" class="btn-log">
                             {{ __('Register') }}
                         </button>
                     </div>
