@@ -16,9 +16,9 @@ class MpesaController extends Controller
 
     public function pay(Request $request)
     {
-        // $validated = request()->validate([
-        //     'mobile-no' => ['required', 'integer']
-        // ]);
+        $validated = request()->validate([
+            'mobile-no' => ['required', 'integer']
+        ]);
 
         $trip_id = $request->session()->get('trip_id');
         $trip = Trip::find($trip_id);
