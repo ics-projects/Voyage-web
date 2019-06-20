@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerBooking;
+use Illuminate\Support\Facades\Auth;
 
 class MpesaController extends Controller
 {
@@ -53,7 +54,7 @@ class MpesaController extends Controller
                 'trip_id', 'schedule',
                 'pick-point', 'drop-point', 'seats', 'total-price'
             ]);
-            
+
             Session::flash('status', 'Order was successful, please check your phone to pay for the order to be confirmed');
             return redirect('/');
         } else {
@@ -151,7 +152,7 @@ class MpesaController extends Controller
             $bookings->update(['confirmed' => true]);
             $results = $bookings->get();
 
-            Mail::to($request->user()->email)->send(new CustomerBooking($results));
+            Mail::to(Auth::user()->email)->send(new CustomerBooking($results));
         }
     }
 
