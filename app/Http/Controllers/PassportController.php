@@ -81,6 +81,9 @@ class PassportController extends Controller
      */
     public function details()
     {
-        return response()->json(['user' => auth()->user()], 200);
+        $user = auth()->user();
+        $user->token = auth()->user()->token()->id;
+        
+        return response()->json($user, 200);
     }
 }
