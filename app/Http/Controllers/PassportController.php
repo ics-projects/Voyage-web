@@ -35,7 +35,7 @@ class PassportController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        $token = $user->createToken('TutsForWeb')->accessToken;
+        $token = $user->createToken('UserToken')->accessToken;
 
         return response()->json(['token' => $token], 200);
     }
@@ -59,6 +59,19 @@ class PassportController extends Controller
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
+    }
+
+    /**
+     * Logs out authenticated User
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        $token = auth()->user()->token();
+        $token->revoke();
+
+        return response()->json(['logged out'], 200);
     }
 
     /**

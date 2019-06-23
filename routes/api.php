@@ -13,14 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::middleware('auth:api')->group(function () {
+    Route::get('user', 'PassportController@details');
+    Route::get('logout', 'PassportController@logout');
+
     Route::resource('/trip', 'ApiTripController');
+
     Route::post('/bookingPhase/pickSeat', 'ApiBookingPhasesController@pickSeat')
         ->name('api.pickSeat');
+
     Route::post('/bookingPhase/pay', 'ApiMpesaController@pay')
         ->name('api.pay');
 });
