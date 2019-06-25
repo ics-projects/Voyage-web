@@ -24,8 +24,8 @@ class ApiTripController extends Controller
             $destination = $request->query('destination');
             $date = $request->query('date');
 
-            $trips = Schedule::with('trips')->where('origin', $departure)
-                ->where('destination', $destination)->get();
+            $trips = Schedule::with('trips')->where('origins.name', $departure)
+                ->where('destinations.name', $destination)->get();
         } else {
             $trips = Trip::all();
         }
