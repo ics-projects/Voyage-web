@@ -20,20 +20,35 @@ class ApiTripController extends Controller
         $trips = NULL;
 
         if ($request->filled(['departure', 'destination', 'date'])) {
-            $departure = $request->query('departure');
-            $destination = $request->query('destination');
-            $date = $request->query('date');
+            $departure = $request->input('departure');
+            $destination = $request->input('destination');
+            $date = $request->input('date');
 
-            $trips = Schedule::with('trips')->where('origins.name', $departure)
-                ->where('destinations.name', $destination)->get();
+            $trips = Schedule::with('origins')
+                ->with('destinations')
+                ->with('trips')
+                ->whereDate('dept_time', $date)
+                ->whereHas('origins', function ($query) use ($departure) {
+                    $query->where('name', $departure);
+                })
+                ->whereHas('destinations', function ($query) use ($destination) {
+                    $query->where('name', $destination);
+                })
+                ->get();
+
+            $trips->each(function ($key, $item) {
+                $key->origin = $key->origins->name;
+                $key->destination = $key->destinations->name;
+                $key->prices = [
+                    'First class' => $key->trips->seatPrice[0]->price,
+                    'Second class' => $key->trips->seatPrice[1]->price,
+                ];
+            });
         } else {
             $trips = Trip::all();
         }
 
-        return response()->json([
-            'success' => true,
-            'data' => $trips
-        ], 200);
+        return response()->json($trips, 200);
     }
 
     /**
