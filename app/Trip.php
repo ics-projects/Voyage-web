@@ -22,4 +22,9 @@ class Trip extends Model
     {
         return $this->belongsTo(Route::class, 'route');
     }
+
+    public function seatPrice()
+    {
+        return $this->hasMany(SeatPrice::class, 'trip');
+    }
 }

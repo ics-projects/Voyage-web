@@ -13,6 +13,11 @@ class SeatPrice extends Model
         return $this->belongsTo(Bus::class, 'bus');
     }
 
+    public function trips()
+    {
+        return $this->belongsTo(Trip::class, 'trip');
+    }
+
     public function category()
     {
         return $this->belongsTo(SeatCategory::class, 'seat_category');
