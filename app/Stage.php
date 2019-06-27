@@ -10,9 +10,14 @@ class Stage extends Model
 
     protected $fillable = ['name'];
 
-    public function schedules()
+    public function scheduleOrigins()
     {
         return $this->hasMany(Schedule::class, 'origin', 'id');
+    }
+
+    public function scheduleDestinations()
+    {
+        return $this->hasMany(Schedule::class, 'destination', 'id');
     }
 
     public function routes()
