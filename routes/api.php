@@ -18,6 +18,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('logout', 'PassportController@logout');
 
     Route::post('/trip', 'ApiTripController@index');
+    Route::get('/trip/{id}', 'ApiTripController@show');
     // Route::resource('trip', 'ApiTripController');
     Route::resource('schedule', 'ApiScheduleController');
 
