@@ -15,9 +15,11 @@ class ApiScheduleController extends Controller
     public function index()
     {
         $schedules = Schedule::all()
+            // ->unique('origin')
             ->load('origins')
             ->load('destinations')
-            ->unique('destinations.name');
+            ->unique('destinations.name')
+            ->values();
 
         $schedules->each(function ($key, $item) {
             $key->origin = $key->origins->name;
