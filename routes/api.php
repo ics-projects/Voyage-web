@@ -22,6 +22,8 @@ Route::middleware('auth:api')->group(function () {
     // Route::resource('trip', 'ApiTripController');
     Route::resource('schedule', 'ApiScheduleController');
 
+    Route::get('/seat/{busId}', 'ApiSeatController@busId');
+
     Route::post('/bookingPhase/pickSeat', 'ApiBookingPhasesController@pickSeat')
         ->name('api.pickSeat');
 

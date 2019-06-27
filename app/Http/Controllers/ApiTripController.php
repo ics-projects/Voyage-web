@@ -43,6 +43,7 @@ class ApiTripController extends Controller
                     'First class' => $key->trips->seatPrice[0]->price,
                     'Second class' => $key->trips->seatPrice[1]->price,
                 ];
+                $key->busId = $key->trips->bus;
             });
         } else {
             $trips = Trip::all();
