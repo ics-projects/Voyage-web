@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Trip;
 use App\SeatPrice;
 use App\Stage;
+use App\Seat;
 
 class ApiBookingPhasesController extends Controller
 {
@@ -33,6 +34,7 @@ class ApiBookingPhasesController extends Controller
 
             $stages = Stage::find([$pick_point, $drop_point]);
             $departure_time = $trip->scheduleID->dept_time;
+            $seats = Seat::find([$seats]);
             $pay_URL = url()->temporarySignedRoute('api.pay', now()->addMinutes(5));
 
             return response()->json(compact(
