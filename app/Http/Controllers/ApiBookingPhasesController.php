@@ -33,12 +33,13 @@ class ApiBookingPhasesController extends Controller
                 ->sum('price');
 
             $stages = Stage::find([$pick_point, $drop_point]);
-            $departure_time = $trip->scheduleID->dept_time;
+            $time = $trip->time;
             $seats = Seat::find([$seats]);
             $pay_URL = url()->temporarySignedRoute('api.pay', now()->addMinutes(5));
 
             return response()->json(compact(
                 'trip_id',
+                'time',
                 'stages',
                 'seats',
                 'total_price',
