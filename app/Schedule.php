@@ -30,6 +30,5 @@ class Schedule extends Model
         'updated_at',
         'dept_time',
         'arrival_time'
-
     ];
 }
