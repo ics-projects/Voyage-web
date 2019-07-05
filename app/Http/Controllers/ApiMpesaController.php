@@ -55,7 +55,6 @@ class ApiMpesaController extends Controller
                         'seat' => $seat,
                         'checkout_request_id' => $CheckoutRequestID
                     ]);
-                    Seat::where('id', $seat)->update(['available' => false]);
                 }
             }
             return response()->json("success", 200);
