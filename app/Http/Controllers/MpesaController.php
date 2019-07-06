@@ -150,11 +150,11 @@ class MpesaController extends Controller
             $CheckoutRequestID = $data["Body"]["stkCallback"]["CheckoutRequestID"];
             $bookings = Booking::where('checkout_request_id', $CheckoutRequestID);
             $bookings->update(['confirmed' => true]);
-            $results = $bookings->get()->unique('email');
 
-            foreach ($results as $result) {
-                Mail::to($result->email)->send(new CustomerBooking($results));
-            }
+            $user_email = $bookings->get()->first()->users->email;
+            Mail::to($user_email)->send(new CustomerBooking($bookings->get()));
+
+            return response(200);
         }
     }
 
