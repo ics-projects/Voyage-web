@@ -25,18 +25,18 @@ class ApiMpesaController extends Controller
 
         $trip_id = $request->input('trip_id');
         $trip = Trip::find($trip_id);
-        $seats = $request->input('seats');
+        $seatIds = $request->input('seats');
         $pick_point = $request->input('pick-point');
         // $drop_point = $request->input('drop-point');
         $mobile_no = $request->input('mobile-no');
-        $total_price = SeatPrice::join(
-            'seat',
-            'seat_price.category',
-            '=',
-            'seat.seat_category'
-        )
-            ->whereIn('seat.id', $seats)
-            ->sum('price');
+
+        $total_price = 0;
+        $seats = Seat::whereIn('id', $seatIds)->get();
+
+        $seat_categories = $seats->pluck('seat_category');
+
+        $total_price = SeatPrice::where('trip', $trip_id)
+            ->whereIn('category', $seat_categories->all())->sum('price');
 
         $Amount = $total_price;
         $PartyA = $mobile_no;
@@ -52,10 +52,9 @@ class ApiMpesaController extends Controller
                         'pick_point' => $pick_point,
                         'amount' => $total_price,
                         'confirmed' => false,
-                        'seat' => $seat,
+                        'seat' => $seat->id,
                         'checkout_request_id' => $CheckoutRequestID
                     ]);
-                    Seat::where('id', $seat)->update(['available' => false]);
                 }
             }
             return response()->json("success", 200);
