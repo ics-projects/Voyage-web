@@ -8,21 +8,23 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Seat;
+use App\Booking;
 
 class ClearSeats implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $seat_ids;
+    private $user_id;
+    private $schedule_id;
+    private $pick_point;
+    private $seats;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct($seat_ids)
+    public function __construct($user_id, $schedule_id, $pick_point, $seats)
     {
-        $this->seat_ids = $seat_ids;
+        $this->user_id = $user_id;
+        $this->schedule_id = $schedule_id;
+        $this->pick_point = $pick_point;
+        $this->seats = $seats;
     }
 
     /**
@@ -32,10 +34,13 @@ class ClearSeats implements ShouldQueue
      */
     public function handle()
     {
-        $seats = $this->seat_ids;
-        // dd($seats);
-        foreach ($seats as $seat) {
-            Seat::where('id', $seat)->update(['available' => true]);
-        }
+        Booking::where([
+            ['user', $this->user_id],
+            ['schedule', $this->schedule_id],
+            ['pick_point', $this->pick_point],
+            ['confirmed', false]
+        ])->delete();
+
+        Seat::whereIn('id', $this->seats)->update(['available' => true]);
     }
 }
