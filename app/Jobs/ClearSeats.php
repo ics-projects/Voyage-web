@@ -34,13 +34,20 @@ class ClearSeats implements ShouldQueue
      */
     public function handle()
     {
-        Booking::where([
+        $booking_query = Booking::where([
             ['user', $this->user_id],
             ['schedule', $this->schedule_id],
             ['pick_point', $this->pick_point],
             ['confirmed', false]
-        ])->delete();
+        ]);
 
-        Seat::whereIn('id', $this->seats)->update(['available' => true]);
+        $bookings = $booking_query->get();
+        
+        foreach ($bookings as $booking) {
+            $seat_id = $booking->seats->id;
+            Seat::where('id', $seat_id)->update(['available' => true]);
+        }
+
+        $booking_query->delete();
     }
 }
