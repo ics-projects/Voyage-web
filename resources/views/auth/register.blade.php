@@ -62,25 +62,6 @@
                         @endif
                     </div>
 
-                    {{-- <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                        </div>
-                        <select class="custom-select" style="max-width: 120px;">
-                            <option selected="">Kenya +254</option>
-                            <option value="1">Tanzania +255</option>
-                            <option value="2">Uganda +256</option>
-                        </select>
-                        <input name="" class="form-control" placeholder="Phone number" type="text" required>
-                    </div> --}}
-
-                    {{-- <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="far fa-calendar-alt"></i> </span>
-              </div>
-              <input class="form-control" placeholder="Date of birth" type="date" required>
-            </div> --}}
-
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
@@ -91,6 +72,11 @@
                         @if ($errors->has('password'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('password') }}</strong>
+                            <p id="passwordHelpBlock" class="form-text text-muted">
+                                Note: Your password must be more than 8 characters long, should contain at-least 1
+                                Uppercase, 1
+                                Lowercase and 1 Numeric.
+                            </p>
                         </span>
                         @endif
                     </div>
