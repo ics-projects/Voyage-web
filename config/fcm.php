@@ -1,0 +1,6 @@
+<?php
+
+return [
+    'FCM_PROJECT_ID' => env('FCM_PROJECT_ID'),
+    'FCM_GOOGLE_SERVICES_JSON_FILE_PATH' => env('FCM_GOOGLE_SERVICES_JSON_FILE_PATH'),
+];
