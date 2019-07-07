@@ -31,6 +31,8 @@ Route::middleware('auth:api')->group(function () {
         ->name('api.pay');
 
     Route::get('/bookings', 'ApiBookingController@index');
+    
+    Route::post('/fcmToken', 'FcmController@store');
 });
 
 Route::post('login', 'PassportController@login');
