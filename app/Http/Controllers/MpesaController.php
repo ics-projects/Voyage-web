@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerBooking;
-use Illuminate\Support\Facades\Auth;
+use Google_Client;
 
 class MpesaController extends Controller
 {
@@ -150,11 +150,13 @@ class MpesaController extends Controller
             $CheckoutRequestID = $data["Body"]["stkCallback"]["CheckoutRequestID"];
             $bookings = Booking::where('checkout_request_id', $CheckoutRequestID);
             $bookings->update(['confirmed' => true]);
-            $results = $bookings->get()->unique('email');
 
-            foreach ($results as $result) {
-                Mail::to($result->email)->send(new CustomerBooking($results));
-            }
+            $user_email = $bookings->get()->first()->users->email;
+            $fcm_token = $bookings->get()->first()->users->fcm_token;
+            Mail::to($user_email)->queue(new CustomerBooking($bookings->get()));
+            self::sendFcmNotification($fcm_token);
+
+            return response(200);
         }
     }
 
@@ -183,5 +185,44 @@ class MpesaController extends Controller
         $curl_response = curl_exec($curl);
 
         return json_decode($curl_response)->access_token;
+    }
+
+    private function sendFcmNotification($registrationToken)
+    {
+        $project = config('fcm.FCM_PROJECT_ID', '');
+        $json_file_path = config('fcm.FCM_GOOGLE_SERVICES_JSON_FILE_PATH', '');
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $json_file_path);
+
+        $client = new Google_Client();
+        $client->useApplicationDefaultCredentials();
+        $client->setScopes(['https://www.googleapis.com/auth/firebase.messaging']);
+
+        $http_client = $client->authorize();
+
+        $message = array(
+            "message" => array(
+                "token" => $registrationToken,
+                "notification" => array(
+                    "title" => "Booking confirmed",
+                    "body" => "Your booking has been confirmed"
+                ),
+                "data" => array(
+                    "Booking" => "Confirmed booking"
+                )
+            )
+        );
+
+        $response = $http_client
+            ->post(
+                "https://fcm.googleapis.com/v1/projects/{$project}/messages:send",
+                ['json' => $message]
+            );
+
+        $status_code = $response->getStatusCode();
+        if ($status_code != 200) {
+            Log::error('Fcm Error' . $response->getBody()->getContents());
+        } else {
+            return;
+        }
     }
 }

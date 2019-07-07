@@ -7,6 +7,7 @@ use App\Trip;
 use App\SeatPrice;
 use App\Booking;
 use App\Seat;
+use Illuminate\Support\Facades\Log;
 
 class ApiMpesaController extends Controller
 {
