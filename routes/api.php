@@ -29,6 +29,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('/bookingPhase/pay', 'ApiMpesaController@pay')
         ->name('api.pay');
+
+    Route::get('/bookings', 'ApiBookingController@index');
 });
 
 Route::post('login', 'PassportController@login');
